@@ -16,6 +16,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
         render json: post, status: :created
     end
 
+    def update
+        post = Post.find_by!(id: params[:id])
+        post.update!(post_params)
+        render json: post, status: :accepted
+    end
+
     def destroy
         post = Post.find_by!(id: params[:id])
         post.destroy

@@ -16,6 +16,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
         render json: restaurant, status: :created
     end
 
+    def update
+        restaurant = Restaurant.find_by!(id: params[:id])
+        restaurant.update!(restaurant_params)
+        render json: restaurant, status: :accepted
+    end
+
     private
 
     def restaurant_params

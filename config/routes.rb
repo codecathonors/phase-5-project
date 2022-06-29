@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :restaurants, only: [:index, :show, :create]
-  resources :posts, only: [:index, :show, :create, :destroy]
-  resources :users, only: [:index, :show, :create, :destroy]
+  resources :restaurants, only: [:index, :show, :create, :update]
+  resources :posts
+  resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
