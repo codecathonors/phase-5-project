@@ -1,7 +1,6 @@
 class User < ApplicationRecord
     has_many :posts
     has_many :restaurants, through: :posts
-    has_one :profile
 
     validates :username, presence: true
     validates :username, uniqueness: true
@@ -10,4 +9,5 @@ class User < ApplicationRecord
     validates :password_digest, presence: true
     validates :password_digest, length: { in: 6..20 }
     validates :password_digest, confirmation: true
+    validates :profile_bio, length: { maximum: 200 }, allow_blank: true
 end
