@@ -5,13 +5,15 @@ puts "Starting seed"
 5.times do 
     username = Faker::Internet.unique.username(specifier:3..25)
     password_digest = Faker::Internet.password(min_length: 6, max_length: 20)
-    User.create(username: username, password_digest: password_digest)
+    profile_picture = Faker::LoremFlickr.image(search_terms: ['person'])
+    profile_bio = Faker::Lorem.paragraph(sentence_count: 2)
+    User.create(username: username, password_digest: password_digest, profile_picture: profile_picture, profile_bio: profile_bio)
 end
 
-cat = User.find_or_create_by(username: "cat", password_digest: "password1")
-cooper = User.find_or_create_by(username: "cooper", password_digest: "password1")
-romy = User.find_or_create_by(username: "romy", password_digest: "password1")
-benny = User.find_or_create_by(username: "benny", password_digest: "password1")
+cat = User.find_or_create_by(username: "cat", password_digest: "password1", profile_picture: "images/IMG_8571.jpg", profile_bio: "eating food all the time nom nom nom!")
+cooper = User.find_or_create_by(username: "cooper", password_digest: "password1", profile_picture: "images/IMG_5815 (1).jpg", profile_bio: "hi!! I love car rides! Especially to restaurants!")
+romy = User.find_or_create_by(username: "romy", password_digest: "password1", profile_picture: "images/IMG_7423.jpeg", profile_bio: "I love potatoes so much even my friends call me potato")
+benny = User.find_or_create_by(username: "benny", password_digest: "password1", profile_picture: "images/IMG_7427.jpeg", profile_bio: "More restaurants?? YAWN!")
 
 
 #Restaurant seed data

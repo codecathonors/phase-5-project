@@ -26,14 +26,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_134232) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "profile_picture"
-    t.string "profile_bio"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "restaurants", force: :cascade do |t|
     t.string "restaurant_name"
     t.string "category"
@@ -47,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_134232) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "profile_picture"
+    t.string "profile_bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
