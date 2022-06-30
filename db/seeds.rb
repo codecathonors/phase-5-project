@@ -10,10 +10,10 @@ puts "Starting seed"
     User.create(username: username, password_digest: password_digest, profile_picture: profile_picture, profile_bio: profile_bio)
 end
 
-cat = User.find_or_create_by(username: "cat", password_digest: "password1", profile_picture: "images/IMG_8571.jpg", profile_bio: "eating food all the time nom nom nom!")
-cooper = User.find_or_create_by(username: "cooper", password_digest: "password1", profile_picture: "images/IMG_5815 (1).jpg", profile_bio: "hi!! I love car rides! Especially to restaurants!")
-romy = User.find_or_create_by(username: "romy", password_digest: "password1", profile_picture: "images/IMG_7423.jpeg", profile_bio: "I love potatoes so much even my friends call me potato")
-benny = User.find_or_create_by(username: "benny", password_digest: "password1", profile_picture: "images/IMG_7427.jpeg", profile_bio: "More restaurants?? YAWN!")
+cat = User.find_or_create_by(username: "cat", password_digest: "password1", profile_picture: "./assets/IMG_8571.jpg", profile_bio: "eating food all the time nom nom nom!")
+cooper = User.find_or_create_by(username: "cooper", password_digest: "password1", profile_picture: "./assets/IMG_5600.jpeg", profile_bio: "hi!! I love car rides! Especially to restaurants!")
+romy = User.find_or_create_by(username: "romy", password_digest: "password1", profile_picture: "./assets/IMG_7423.jpeg", profile_bio: "I love potatoes so much even my friends call me potato")
+benny = User.find_or_create_by(username: "benny", password_digest: "password1", profile_picture: "./assets/IMG_7427.jpeg", profile_bio: "More restaurants?? YAWN!")
 
 
 #Restaurant seed data

@@ -3,14 +3,7 @@ import SingleRestaurantProfile from "./SingleRestaurantProfile";
 import { Link } from "react-router-dom";
 
 function SingleRestaurantCard( {restaurant} ) {
-    // console.log(restaurant)
 
-    // function handleRedirectClick () {
-    //     history.push(`/restaurants/:${restaurant.id}`)
-    //     // `test ${restaurant.restaurant_name}`
-    // }
-
-    // const history = useHistory()
 
   return (
     <div >

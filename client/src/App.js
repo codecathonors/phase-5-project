@@ -5,10 +5,13 @@ import Signup from "./Signup";
 import UsersList from "./UsersList";
 import RestaurantsList from "./RestaurantsList";
 import SingleRestaurantProfile from "./SingleRestaurantProfile";
+import PostsList from "./PostsList";
+import SinglePostProfile from "./SinglePostProfile";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     fetch("/users")
@@ -20,6 +23,12 @@ function App() {
     fetch("/restaurants")
       .then((r) => r.json())
       .then((restaurants) => setRestaurants(restaurants));
+  }, []);
+
+  useEffect(() => {
+    fetch("/posts")
+      .then((r) => r.json())
+      .then((posts) => setPosts(posts));
   }, []);
 
   return (
@@ -36,7 +45,7 @@ function App() {
             <Signup />
           </Route>
           <Route exact path="/">
-            <h1>I am the home page that will have posts</h1>
+            <PostsList posts={posts} />
           </Route>
           <Route exact path="/users">
             <UsersList users={users} />
@@ -46,6 +55,9 @@ function App() {
           </Route>
           <Route path="/restaurants/:id">
             <SingleRestaurantProfile restaurants={restaurants}/>
+          </Route>
+          <Route path="/posts/:id">
+            <SinglePostProfile posts={posts}/>
           </Route>
         </Switch>
       </div>
