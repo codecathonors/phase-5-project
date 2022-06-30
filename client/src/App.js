@@ -8,6 +8,7 @@ import SingleRestaurantProfile from "./SingleRestaurantProfile";
 import PostsList from "./PostsList";
 import SinglePostProfile from "./SinglePostProfile";
 import SingleUserProfile from "./SingleUserProfile";
+import Header from "./Header";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -40,27 +41,35 @@ function App() {
             <h1>Test Route</h1>
           </Route>
           <Route exact path="/login">
+            <Header />
             <Login />
           </Route>
           <Route exact path="/signup">
+            <Header />
             <Signup />
           </Route>
           <Route exact path="/">
+            <Header />
             <PostsList posts={posts} />
           </Route>
           <Route exact path="/users">
+            <Header />
             <UsersList users={users} />
           </Route>
           <Route exact path="/restaurants">
+            <Header />
             <RestaurantsList restaurants={restaurants}/>
           </Route>
           <Route path="/restaurants/:id">
+            <Header />
             <SingleRestaurantProfile restaurants={restaurants}/>
           </Route>
           <Route path="/posts/:id">
+            <Header />
             <SinglePostProfile posts={posts}/>
           </Route>
           <Route path="/users/:id">
+            <Header />
             <SingleUserProfile users={users}/>
           </Route>
         </Switch>

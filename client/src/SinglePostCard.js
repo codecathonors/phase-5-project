@@ -16,7 +16,7 @@ function SinglePostCard( {post} ) {
   return (
     <div >
         <h1>{post.user.username}</h1>
-        <img src={post.user.profile_picture}/>
+        <img src="../client/assets/IMG_8571.jpg"/>
         <h2>{post.restaurant.restaurant_name}</h2>
         <h3>{post.restaurant.location}</h3>
         <h4>User rating: {post.rating}</h4>
@@ -26,10 +26,6 @@ function SinglePostCard( {post} ) {
         <p>{post.short_review}</p>
         <Link to={`/posts/${post.id}`}>View more</Link>
         
-        {/* <h1>{restaurant.restaurant_name}</h1>
-        <h3>Rating: {restaurant.total_rating}</h3>
-        <p>{restaurant.location}</p>
-        <Link to={`/restaurants/${restaurant.id}`}>View more</Link> */}
     </div>
 );
 }
