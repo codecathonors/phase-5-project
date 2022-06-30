@@ -7,6 +7,7 @@ import RestaurantsList from "./RestaurantsList";
 import SingleRestaurantProfile from "./SingleRestaurantProfile";
 import PostsList from "./PostsList";
 import SinglePostProfile from "./SinglePostProfile";
+import SingleUserProfile from "./SingleUserProfile";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path="/posts/:id">
             <SinglePostProfile posts={posts}/>
+          </Route>
+          <Route path="/users/:id">
+            <SingleUserProfile users={users}/>
           </Route>
         </Switch>
       </div>
