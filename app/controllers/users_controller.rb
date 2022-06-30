@@ -31,7 +31,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     private
 
     def user_params
-        params.permit(:username, :password_digest, :profile_bio, :profile_picture)
+        params.permit(:username, :password_digest, :password_confirmation, :profile_bio, :profile_picture)
     end
 
     def render_not_found
