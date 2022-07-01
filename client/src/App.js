@@ -33,6 +33,10 @@ function App() {
       .then((posts) => setPosts(posts));
   }, []);
 
+  const handleNewPostForm = (newPost) => {
+    setPosts([...posts, newPost])
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -50,7 +54,7 @@ function App() {
           </Route>
           <Route exact path="/">
             <Header />
-            <PostsList posts={posts} />
+            <PostsList posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm}/>
           </Route>
           <Route exact path="/users">
             <Header />

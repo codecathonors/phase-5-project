@@ -26,13 +26,12 @@ function SinglePostCard( {post} ) {
           headers: {
             'Content-type': 'application/json'
           },
-          body: JSON.stringify({
-            likes: post.likes += 1
-          }
-          ),
+          body: JSON.stringify(
+            {likes: post.likes += 1}
+            ),
           })
           .then(r => r.json())
-         .then(data => console.log('add like:', data)))
+          .then(data => console.log('add like:', data)))
         :
         fetch(`/posts/${post.id}`, {
           method: 'PATCH',
@@ -41,7 +40,7 @@ function SinglePostCard( {post} ) {
           },
           body: JSON.stringify(
             {likes: post.likes -= 1}
-          ),
+            ),
           })
           .then(r => r.json())
           .then(data => console.log('remove like:', data))
@@ -55,41 +54,34 @@ function SinglePostCard( {post} ) {
     function handleDislike () {
       handleDislikeClick()
   
-        isDislikeClicked ? (
-          fetch(`/posts/${post.id}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-              dislikes: post.dislikes += 1
-            }
+      isDislikeClicked ? (
+        fetch(`/posts/${post.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(
+            {dislikes: post.dislikes += 1}
             ),
-            })
-            .then(r => r.json())
-           .then(data => console.log('add dislike:', data)))
-          :
-          fetch(`/posts/${post.id}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify(
-              {dislikes: post.dislikes -= 1}
+          })
+          .then(r => r.json())
+          .then(data => console.log('add dislike:', data)))
+        :
+        fetch(`/posts/${post.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(
+            {dislikes: post.dislikes -= 1}
             ),
-            })
-            .then(r => r.json())
-            .then(data => console.log('remove dislike:', data))
+          })
+          .then(r => r.json())
+          .then(data => console.log('remove dislike:', data))
       }
 
-    
-
-  
-
-    // const history = useHistory()
-
   return (
-    <div >
+    <div className="grid-item">
         <h1>{post.user.username}</h1>
         <img src="../client/assets/IMG_8571.jpg"/>
         <h2>{post.restaurant.restaurant_name}</h2>
