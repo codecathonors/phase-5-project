@@ -7,7 +7,8 @@ function SingleUserProfile( { users }) {
     // console.log(users)
 
     const userProfile = users.filter(user => user.id == id)
-    console.log(userProfile[0].posts.map(post => post.short_review))
+    // console.log(userProfile[0].posts.map(post => post.short_review))
+    console.log(<img src={userProfile[0].profile_picture} />)
 
     // const recentReview = () => {
     // if (!userProfile[0].posts.short_review) {
