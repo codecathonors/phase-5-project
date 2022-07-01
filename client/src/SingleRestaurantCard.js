@@ -6,7 +6,7 @@ function SingleRestaurantCard( {restaurant} ) {
 
 
   return (
-    <div >
+    <div className="restaurant-grid-item">
         <h1>{restaurant.restaurant_name}</h1>
         <h3>Rating: {restaurant.total_rating}</h3>
         <p>{restaurant.location}</p>

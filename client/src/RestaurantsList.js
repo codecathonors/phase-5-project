@@ -4,7 +4,7 @@ function RestaurantsList( { restaurants }) {
     console.log(restaurants)
 
   return (
-    <div>
+    <div className="restaurant-grid-container">
         {restaurants.map(restaurant => <SingleRestaurantCard restaurant={restaurant} />)}
     </div>
 );

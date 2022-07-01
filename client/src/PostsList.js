@@ -16,7 +16,7 @@ function PostsList( { posts, restaurants, handleNewPostForm }) {
       <PostForm restaurants={restaurants} handleNewPostForm={handleNewPostForm} />
       <button>add post</button>
       <h1> I'm the home page that will contain posts</h1>
-      <div className="grid-container">
+      <div className="post-grid-container">
         {posts.map(post => <SinglePostCard post={post} />)}
         </div>
     </div>

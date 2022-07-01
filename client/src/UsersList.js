@@ -8,7 +8,9 @@ function UsersList( { users }) {
   return (
     <div>
         <h1> I'm the users page baby</h1>
+        <div className="user-grid-container">
         {users.map(user => <SingleUserCard user={user} />)}
+        </div>
     </div>
 );
 }

@@ -14,7 +14,7 @@ function SingleUserCard( {user} ) {
     // const history = useHistory()
 
   return (
-    <div >
+    <div className="user-grid-item">
         <h1>{user.username}</h1>
 
         <Link to={`/users/${user.id}`}>View more</Link>
