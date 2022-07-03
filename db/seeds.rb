@@ -4,8 +4,8 @@ puts "Starting seed"
 50.times do 
     username = Faker::Internet.unique.username(specifier:3..25)
     password_digest = Faker::Internet.password(min_length: 6, max_length: 20)
-    profile_picture = Faker::LoremFlickr.image(search_terms: ['person'])
-    profile_bio = Faker::Lorem.paragraph(sentence_count: 2)
+    profile_picture = Faker::LoremFlickr.image(search_terms: ['food'])
+    profile_bio = Faker::Lorem.paragraph(sentence_count: 4)
     User.create(username: username, password_digest: password_digest, profile_picture: profile_picture, profile_bio: profile_bio)
 end
 

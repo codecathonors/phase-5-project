@@ -83,7 +83,7 @@ function SinglePostCard( {post} ) {
   return (
     <div className="post-grid-item">
         <h1>{post.user.username}</h1>
-        <img className="grid-item-image" src="../client/assets/IMG_8571.jpg"/>
+        {/* <img className="grid-item-image" src={post.user.profile_picture}/> */}
         <h2>{post.restaurant.restaurant_name}</h2>
         <h3>{post.restaurant.location}</h3>
         <h4>User rating: {post.rating}</h4>

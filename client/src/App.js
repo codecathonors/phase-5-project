@@ -14,6 +14,8 @@ function App() {
   const [users, setUsers] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [sortMethod, setSortMethod] = useState("rating");
 
   useEffect(() => {
     fetch("/users")
@@ -36,6 +38,20 @@ function App() {
   const handleNewPostForm = (newPost) => {
     setPosts([...posts, newPost])
   }
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const filteredRestaurants = restaurants.filter(restaurant => restaurant.restaurant_name.toLowerCase().includes(search.toLowerCase()))
+
+  const handleSortAlphabeticalByRestName = () => {
+    setSortMethod("alphabetical");
+  } 
+
+  const handleSortByTotalRating = () => {
+    setSortMethod("rating");
+  } 
 
   return (
     <BrowserRouter>
@@ -62,7 +78,7 @@ function App() {
           </Route>
           <Route exact path="/restaurants">
             <Header />
-            <RestaurantsList restaurants={restaurants}/>
+            <RestaurantsList sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating}handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search}/>
           </Route>
           <Route path="/restaurants/:id">
             <Header />
