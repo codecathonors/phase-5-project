@@ -7,9 +7,9 @@ function UsersList( { users }) {
 
   return (
     <div>
-        <h1> I'm the users page baby</h1>
+        <h1 className="top-of-page-title">Social</h1>
         <div className="user-grid-container">
-        {users.map(user => <SingleUserCard user={user} />)}
+        {users.map(user => <SingleUserCard user={user} key={user.id}/>)}
         </div>
     </div>
 );

@@ -16,6 +16,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [sortMethod, setSortMethod] = useState("rating");
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     fetch("/users")
@@ -39,6 +40,10 @@ function App() {
     setPosts([...posts, newPost])
   }
 
+  const handleNewRestaurantForm = (newRestaurant) => {
+    setRestaurants([...restaurants, newRestaurant])
+  }
+
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
@@ -52,6 +57,16 @@ function App() {
   const handleSortByTotalRating = () => {
     setSortMethod("rating");
   } 
+
+  //think I'll need something like this for the profile patch
+  const onUpdatedProfile = (updatedProfile) => {
+    const newUpdatedProfile = user => {
+      if (user.id === updatedProfile.id) {
+        return updatedProfile
+      } else {return user}
+    }
+    setCurrentUser(newUpdatedProfile)
+  }
 
   return (
     <BrowserRouter>
@@ -78,7 +93,7 @@ function App() {
           </Route>
           <Route exact path="/restaurants">
             <Header />
-            <RestaurantsList sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating}handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search}/>
+            <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}/>
           </Route>
           <Route path="/restaurants/:id">
             <Header />
@@ -90,7 +105,7 @@ function App() {
           </Route>
           <Route path="/users/:id">
             <Header />
-            <SingleUserProfile users={users}/>
+            <SingleUserProfile onUpdatedProfile={onUpdatedProfile} users={users}/>
           </Route>
         </Switch>
       </div>

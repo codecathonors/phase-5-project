@@ -88,7 +88,7 @@ function PostForm({ handleNewPostForm, restaurants }) {
                     <input onChange={e => setReview(e.target.value)}>
                     </input>
                 </label>
-                <button>BURTON</button>
+                <button>Post it!</button>
             </form>
         </div>
     )
