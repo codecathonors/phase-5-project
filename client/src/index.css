@@ -26,6 +26,11 @@ code {
   color: azure;
 }
 
+.error {
+  color: red;
+  text-transform: uppercase;
+}
+
 /* .post-card-container {
   padding-bottom: 15px;
   border-radius: 15px;

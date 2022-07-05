@@ -1,46 +1,21 @@
 import { useState, useEffect } from "react";
+// import { Alert } from 'react-bootstrap';
 
 function PostForm({ handleNewPostForm, restaurants }) {
     const [restaurantName, setRestaurantName] = useState("")
-    // const [restaurantId, setRestaurantId] = useState("")
     const [rating, setRating] = useState(0)
     const [image, setImage] = useState("")
     const [review, setReview] = useState("")
+    const [postFormError, setPostFormError] = useState("");
+    // console.log(restaurants)
 
-    //not working
-    // function newPostFindRestaurant(e) {
-    //     restaurants.forEach((restaurant) => {
-    //         if (restaurant.restaurant_name === e.target.value)
-    //         // setRestaurantName(e.target.value)
-    //         setRestaurantId(restaurant.id)
-    //         console.log(restaurant.id)
-    //     })
-    // }
-    // console.log(restaurant.id)
-    
-    // const selectedRestaurantId = 
-    //     restaurants.forEach((restaurant) => {
-    //         if (restaurant.restaurant_name === restaurantName)
-    //         // setRestaurantName(e.target.value)
-    //         setRestaurantId(restaurant.id)
-    //         console.log(restaurant.id)
-    //     })
-
-
-    //new attempt
     function handleRestaurantSearch(e) {
         setRestaurantName(e.target.value)
-        // console.log(e.target.value)
     }
 
-    // function restaurantId(e) {
-    //     restaurants.map(restaurant => {
-    //     if (restaurantName === e.target.value){
-    //         console.log(restaurant.id)
-    //     }
-    // })}
+    const locatedRestaurant = restaurants.find((restaurant) => restaurant.restaurant_name == restaurantName)
+    console.log(locatedRestaurant)
     
-
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -51,22 +26,38 @@ function PostForm({ handleNewPostForm, restaurants }) {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                //restaurant_id: id
+                //dont have user_id added, not sure how to do that
+                restaurant_id: locatedRestaurant,
                 rating: rating,
                 image: image,
                 review: review
             })
         })
-            .then(r => r.json())
-            .then(data => handleNewPostForm(data))
+        .then(res => {
+            console.log(res)
+            if (res.ok) {
+              res.json().then((json) => {
+                console.log(json.errors);
+                setPostFormError(json.errors);
+                // window.location.reload(true);
+              })
+            } //above is doing what else should be doing
+            else {
+              res.json().then((json) => {
+                console.log(json);
+                //maybe handleNewRestaurantForm
+                // setRestaurantPostError(json.errors);
+              })
+            }
+          })
 
-        setRestaurantName("")
-        setRating(0)
-        setImage("")
-        setReview("")
+        setRestaurantName(restaurantName)
+        setRating(rating)
+        setImage(image)
+        setReview(review)
     }
 
-
+ 
     return (
         <div>
             <form onSubmit={handleSubmit} className="form-container">
@@ -89,6 +80,7 @@ function PostForm({ handleNewPostForm, restaurants }) {
                     </input>
                 </label>
                 <button>Post it!</button>
+                {postFormError && <div className="error">{postFormError.join(", ")}</div>}
             </form>
         </div>
     )

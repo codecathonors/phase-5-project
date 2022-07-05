@@ -14,13 +14,12 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
       } else if (sortMethod === "rating") {
           return b.total_rating - a.total_rating;
       }
-   })
-      .map((restaurant) => (
-          <SingleRestaurantCard 
-              key={restaurant.id}
-              restaurant={restaurant} />))
+    }).map((restaurant) => (
+      <SingleRestaurantCard 
+        key={restaurant.id}
+        restaurant={restaurant} />
+    ))
         
-  
     const handleRestToggle = () => {
       setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
     }
@@ -36,14 +35,12 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
         <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button>
       </div>
       <div className="restaurant-grid-container">
-          {/* {filteredRestaurants.map(restaurant => <SingleRestaurantCard key={restaurant.id} restaurant={restaurant} />)} */}
           {sortedRestaurants.map((restaurant) => {
             return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
           })}
       </div>
-      
     </>
-);
+  );
 }
 
 export default RestaurantsList;

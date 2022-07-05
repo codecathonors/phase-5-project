@@ -5,7 +5,7 @@ function RestaurantForm({ handleNewRestaurantForm }) {
     const [category, setCategory] = useState("")
     const [image, setImage] = useState("")
     const [location, setLocation] = useState("")
-    // const [rating, setRating] = useState(0)
+    const [restaurantPostError, setRestaurantPostError] = useState([]);
 
   
     const handleSubmit = (e) => {
@@ -22,19 +22,33 @@ function RestaurantForm({ handleNewRestaurantForm }) {
                 category: category,
                 image: image,
                 location: location
-                // rating: rating
             })
         })
-            .then(r => r.json())
-            .then(data => handleNewRestaurantForm(data))
+            // .then(r => r.json())
+            // .then(data => handleNewRestaurantForm(data))
+            .then(res => {
+                console.log(res)
+                if (res.ok) {
+                  res.json().then((json) => {
+                    console.log(json.errors);
+                    setRestaurantPostError(json.errors);
+                    // window.location.reload(true);
+                  })
+                } //above is doing what else should be doing
+                else {
+                  res.json().then((json) => {
+                    console.log(json);
+                    //maybe handleNewRestaurantForm
+                    // setRestaurantPostError(json.errors);
+                  })
+                }
+              })
 
-        setAddRestaurantName("")
-        setCategory("")
-        setImage("")
-        setLocation("")
-        // setRating(0)
+        setAddRestaurantName(addRestaurantName)
+        setCategory(category)
+        setImage(image)
+        setLocation(location)
     }
-
 
     return (
         <div>
@@ -54,10 +68,8 @@ function RestaurantForm({ handleNewRestaurantForm }) {
                     <input type="text" onChange={e => setLocation(e.target.value)} value={location}>
                     </input>
                 </label>
-                {/* <label>Rating
-                    <input onChange={e => setRating(e.target.value)}></input>
-                </label> */}
                 <button>Add Restaurant!</button>
+                {restaurantPostError && <div className="error">{restaurantPostError.join(", ")}</div>}
             </form>
         </div>
     )
