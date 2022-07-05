@@ -9,26 +9,16 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
 
     const sortedRestaurants = filteredRestaurants.sort((a, b) => {
       if (sortMethod === "alphabetical") {
-          return a.restaurant.localeCompare(b.restaurant);
+          return a.restaurant_name.localeCompare(b.restaurant_name);
       } else if (sortMethod === "rating") {
-          return b.rating - a.rating;
+          return b.total_rating - a.total_rating;
       }
    })
       .map((restaurant) => (
           <SingleRestaurantCard 
               key={restaurant.id}
               restaurant={restaurant} />))
-              // title={albumEntry.title}
-              // artist={albumEntry.artist}
-              // dateAdded={albumEntry.dateAdded}
-              // image={albumEntry.image}
-              // rating={albumEntry.rating}
-              // comments={albumEntry.comments}
-              // filteredDeletedAlbum={filteredDeletedAlbum}
-              // handleNewCommentInEntries={handleNewCommentInEntries}
-              // albumEntry={albumEntry}
-              // onUpdatedAlbum={onUpdatedAlbum}
-              // />
+        
   
     const handleRestToggle = () => {
       setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
@@ -45,7 +35,10 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
         <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button>
       </div>
       <div className="restaurant-grid-container">
-          {filteredRestaurants.map(restaurant => <SingleRestaurantCard key={restaurant.id} restaurant={restaurant} />)}
+          {/* {filteredRestaurants.map(restaurant => <SingleRestaurantCard key={restaurant.id} restaurant={restaurant} />)} */}
+          {sortedRestaurants.map((restaurant) => {
+            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
+          })}
       </div>
       
     </>
