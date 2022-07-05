@@ -10,6 +10,7 @@ import SinglePostProfile from "./SinglePostProfile";
 import SingleUserProfile from "./SingleUserProfile";
 import Header from "./Header";
 
+
 function App() {
   const [users, setUsers] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
@@ -17,6 +18,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortMethod, setSortMethod] = useState("rating");
   const [currentUser, setCurrentUser] = useState("");
+  const [avgRate, setAvgRate] = useState("")
 
   useEffect(() => {
     fetch("/users")
@@ -76,6 +78,15 @@ function App() {
     setCurrentUser(newUpdatedProfile)
   }
 
+  //callback for getting sort button to work on restaurants list
+  // function handleAverageRating(avg_rating){
+  //   setAvgRate(avg_rating)
+  // }
+
+  // const avg = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
+
+  // console.log
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -101,7 +112,8 @@ function App() {
           </Route>
           <Route exact path="/restaurants">
             <Header />
-            <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}/>
+            <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
+            />
           </Route>
           <Route path="/restaurants/:id">
             <Header />

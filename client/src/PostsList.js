@@ -5,7 +5,7 @@ import PostForm from "./PostForm";
 
 function PostsList( { posts, restaurants, handleNewPostForm, sortMethod, handleSortByLikes, handleSortByDislikes }) {
     const [isPostFormVisible, setIsPostFormVisible] = useState(false)
-    // console.log(posts)
+    console.log(posts)
 
     function handleToggle() {
       setIsPostFormVisible(isPostFormVisible => !isPostFormVisible)

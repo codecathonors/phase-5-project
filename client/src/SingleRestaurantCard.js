@@ -7,7 +7,7 @@ function SingleRestaurantCard( {restaurant} ) {
   // console.log(restaurant)
 
   const avg = restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length
-  // console.log(avg)
+  // console.log(restaurant.restaurant_name, avg)
   
 
   return (

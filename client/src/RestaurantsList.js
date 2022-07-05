@@ -7,12 +7,15 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
     // console.log(restaurants.find(restaurant => { return restaurant.posts > 1}))
 
     const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
+    
+    const avg_rating = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
+  console.log(avg_rating)
 
     const sortedRestaurants = filteredRestaurants.sort((a, b) => {
       if (sortMethod === "alphabetical") {
           return a.restaurant_name.localeCompare(b.restaurant_name);
       } else if (sortMethod === "rating") {
-          return b.total_rating - a.total_rating;
+          return b.avg_rating - a.avg_rating;
       }
     }).map((restaurant) => (
       <SingleRestaurantCard 
@@ -20,9 +23,50 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
         restaurant={restaurant} />
     ))
         
+    // const sortedRestaurants = filteredRestaurants.sort((a, b) => {
+    //   if (sortMethod === "alphabetical") {
+    //       return a.restaurant_name.localeCompare(b.restaurant_name);
+    //   } 
+    // }).map((restaurant) => (
+    //   <SingleRestaurantCard 
+    //     key={restaurant.id}
+    //     restaurant={restaurant} />
+    // ))
+
+    // const sortedRestaurantsRating = avg_rating.sort((a,b) => {
+    //   if (sortMethod === "rating") {
+    //     return b - a;
+    //   }
+    // }).map((restaurant) => (
+    //   <SingleRestaurantCard 
+    //     key={restaurant.id}
+    //     restaurant={restaurant} />
+    // ))
+
+    // const handleFilter = () => 
+    //   {if (sortMethod === "alphabetical")
+    //     return filteredRestaurants.sort((a,b) => {
+    //       return a.restaurant_name.localeCompare(b.restaurant_name)
+    //     }) 
+    //   else if (sortMethod === "rating")
+    //     return avg_rating.sort((a,b) => {
+    //       return b - a
+    //     })
+    //     // .map((restaurant) => (
+    //       //   <SingleRestaurantCard 
+    //       //     key={restaurant.id}
+    //       //     restaurant={restaurant} />
+    // }
     const handleRestToggle = () => {
       setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
     }
+
+    // console.log(handleFilter())
+
+  //   function relayAverageRating() {
+
+  //   // handleAverageRating(avg_rating)
+  // }
 
   return (
     <>
@@ -38,7 +82,11 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
           {sortedRestaurants.map((restaurant) => {
             return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
           })}
+          {/* {sortedRestaurantsRating.map((restaurant) => {
+            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
+          })} */}
       </div>
+     
     </>
   );
 }
