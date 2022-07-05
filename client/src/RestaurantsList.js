@@ -4,7 +4,8 @@ import Search from "./Search";
 import RestaurantForm from "./RestaurantForm";
 
 function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTotalRating, handleSortAlphabeticalByRestName, filteredRestaurants, handleSearch, search, restaurants }) {
-    // console.log(restaurants)
+    // console.log(restaurants.find(restaurant => { return restaurant.posts > 1}))
+
     const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
 
     const sortedRestaurants = filteredRestaurants.sort((a, b) => {
@@ -26,7 +27,7 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
 
   return (
     <>
-      <h1 className="top-of-page-title">Restaurant Page</h1>
+      <h1 className="top-of-page-title">Check out these Restaurants!</h1>
       <Search handleSearch={handleSearch} search={search}/>
       <button onClick={handleRestToggle}>{isRestaurantFormVisible ? "collapse" : "add a restaurant!"}</button>
       {isRestaurantFormVisible ? <RestaurantForm handleNewRestaurantForm={handleNewRestaurantForm}/> : <></>}

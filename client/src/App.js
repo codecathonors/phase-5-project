@@ -58,6 +58,14 @@ function App() {
     setSortMethod("rating");
   } 
 
+  const handleSortByLikes = () => {
+    setSortMethod("likes");
+  }
+
+  const handleSortByDislikes = () => {
+    setSortMethod("dislikes");
+  }
+
   //think I'll need something like this for the profile patch
   const onUpdatedProfile = (updatedProfile) => {
     const newUpdatedProfile = user => {
@@ -85,7 +93,7 @@ function App() {
           </Route>
           <Route exact path="/">
             <Header />
-            <PostsList posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm}/>
+            <PostsList posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes}/>
           </Route>
           <Route exact path="/users">
             <Header />
