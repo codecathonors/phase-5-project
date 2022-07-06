@@ -13,7 +13,7 @@ end
 20.times do
     restaurant_name = Faker::Restaurant.unique.name
     category = Faker::Restaurant.type
-    # total_rating = 0
+    total_rating = Faker::Number.between(from: 0, to: 5)
     image = Faker::LoremFlickr.image(search_terms: ['food'])
     location = Faker::Address.unique.full_address
     Restaurant.create(restaurant_name: restaurant_name, category: category, image: image, location: location)

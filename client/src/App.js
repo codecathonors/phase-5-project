@@ -18,7 +18,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortMethod, setSortMethod] = useState("rating");
   const [currentUser, setCurrentUser] = useState("");
-  const [avgRate, setAvgRate] = useState("")
+  // const [avgRating, setAvgRating] = useState([]);
+  // const [restId, setRestId] = useState([])
 
   useEffect(() => {
     fetch("/users")
@@ -78,18 +79,52 @@ function App() {
     setCurrentUser(newUpdatedProfile)
   }
 
-  //callback for getting sort button to work on restaurants list
-  // function handleAverageRating(avg_rating){
-  //   setAvgRate(avg_rating)
-  // }
+  // function handleChangeRestRating(avg_rating, rest_id) {
+  //   // console.log(restaurants.map(restaurant => restaurant.total_rating))
+  //   const totalRating = restaurants.map(restaurant => restaurant.total_rating)
+  //   setAvgRating(avg_rating)
+  //   setRestId(rest_id)}
+  //   // console.log(totalRating)
+  //   // console.log(rest_id)
+  //   // console.log(avg_rating)
+  //   // setRestaurants(restaurants.map(restaurant => restaurant.total_rating === avg_rating))
 
-  const avg = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
+  //   // setRestaurants(restaurants.map(restaurant => restaurant.total_rating))
+  //   // console.log(rest_id) 
+  //   //[1, 2, 3, 4]
+  //   // console.log(avg_rating)
+  //   //[3, nill, 2.4]
 
+  //   const restObj = {};
 
-  //post request
-  // setRestaurants(restaurants.map => restaurant.total_rating = avg)
-  // console.log
+  //   restId.forEach((element, index) => {
+  //     restObj[element] = avgRating[index];
+  //   })
 
+  //   console.log(restObj) //now rest_id is value and avg_rating is key
+
+  //   //below needs to be in an if / else
+  //   //if restaurant_rating != rating passed in, run this fetch
+    
+  //   for (const [key, value] of Object.entries(restObj)) {
+  //     // console.log(`${key}: ${value}`)
+  //     // useEffect(() => {
+  //       fetch(`/restaurants/${key}`, {
+  //         method: 'PATCH',
+  //         headers: {
+  //           'Content-type': 'application/json'
+  //         },
+  //         body: JSON.stringify( {
+  //           total_rating: `${value}`
+  //       })
+  //       })
+  //       .then(r => r.json())
+  //       .then(data => console.log('response', data)
+  //     )
+  //   }
+      // }), []}
+
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -137,3 +172,36 @@ function App() {
 }
 
 export default App;
+  // const avg = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
+
+  // const averageForRest = restaurants.map(restaurant => restaurant.total_rating)
+  // console.log(averageForRest)
+
+  //post request
+  // setRestaurants(restaurants.map => restaurant.total_rating = avg)
+  // console.log
+
+
+    // let ratedRest = restaurants.filter(restaurant => restaurant.id === rest_id)
+    // const singleRest = rest_id.map(id => )
+    // console.log(ratedRest)
+    // console.log(avg_rating)
+    // const updatedRest = {
+    //   total_rating: ratedRest.id
+    // }
+    // console.log(updatedRest)
+    // // newTeam.map(character => {
+    //   fetch(`/characters/${character.id}`, {
+    //     method: 'PATCH',
+    //     headers: {
+    //       'Content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(
+    //       updatedCharacter
+    //     ),
+    //   })
+    //     .then(r => r.json())
+    //     .then(data => console.log('response', data))
+    // }
+    // )
+  

@@ -30,19 +30,15 @@ function RestaurantForm({ handleNewRestaurantForm }) {
                 console.log(res.status)
                 if (res.status == 201) {
                   res.json().then((json) => {
-                    // handleNewRestaurantForm(json)
                     console.log(json)
-                    // console.log(json.errors);
                     // setRestaurantPostError(json.errors);
                     window.location.reload(true);
                   })
-                } //above is doing what else should be doing
+                }
                 else if (res.status == 200){
                   res.json().then((json) => {
                     console.log(json.errors);
-                    //maybe handleNewRestaurantForm
                     setRestaurantPostError(json.errors);
-                    // window.location.reload(false);
                   })
                 }
               })

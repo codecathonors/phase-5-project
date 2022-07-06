@@ -17,7 +17,9 @@ function PostForm({ handleNewPostForm, restaurants }) {
     }
 
     const locatedRestaurant = restaurants.find((restaurant) => restaurant.restaurant_name == restaurantName)
-    // console.log(locatedRestaurant)
+    console.log(locatedRestaurant)
+
+    
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,7 +32,7 @@ function PostForm({ handleNewPostForm, restaurants }) {
             },
             body: JSON.stringify({
                 //dont have user_id added, not sure how to do that
-                restaurant_id: locatedRestaurant.id,
+                restaurant_id: locatedRestaurant, //maybe locatedRestaurant.id?
                 rating: rating,
                 image: image,
                 review: review

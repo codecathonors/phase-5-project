@@ -3,27 +3,21 @@ import SingleRestaurantCard from "./SingleRestaurantCard";
 import Search from "./Search";
 import RestaurantForm from "./RestaurantForm";
 
-function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTotalRating, handleSortAlphabeticalByRestName, filteredRestaurants, handleSearch, search, restaurants }) {
+function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortAlphabeticalByRestName, filteredRestaurants, handleSearch, search, restaurants }) {
     // console.log(filteredRestaurants)
 
     const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
     
-    const avg_rating = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
-  // console.log(avg_rating)
-
     const sortedRestaurants = filteredRestaurants.sort((a, b) => {
       if (sortMethod === "alphabetical") {
           return a.restaurant_name.localeCompare(b.restaurant_name);
-      } else if (sortMethod === "rating") {
-          return b.avg_rating - a.avg_rating;
-      }
+      } 
     }).map((restaurant) => (
       <SingleRestaurantCard 
         key={restaurant.id}
         restaurant={restaurant} />
     ))
         
-
     const handleRestToggle = () => {
       setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
     }
@@ -38,7 +32,7 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
       {isRestaurantFormVisible ? <RestaurantForm handleNewRestaurantForm={handleNewRestaurantForm}/> : <></>}
       <div className="sortbtns">
         <button className="sort" onClick={handleSortAlphabeticalByRestName}>Sort A-Z by Restaurant Name</button>
-        <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button>
+        {/* <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button> */}
       </div>
       <div className="restaurant-grid-container">
           {sortedRestaurants.map((restaurant) => {
