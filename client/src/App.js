@@ -83,8 +83,11 @@ function App() {
   //   setAvgRate(avg_rating)
   // }
 
-  // const avg = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
+  const avg = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
 
+
+  //post request
+  // setRestaurants(restaurants.map => restaurant.total_rating = avg)
   // console.log
 
   return (

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function PostForm({ handleNewPostForm, restaurants }) {
     const [restaurantName, setRestaurantName] = useState("")
+    const [restId, setRestId] = useState("")
     const [rating, setRating] = useState(0)
     const [image, setImage] = useState("")
     const [review, setReview] = useState("")
@@ -11,10 +12,12 @@ function PostForm({ handleNewPostForm, restaurants }) {
 
     function handleRestaurantSearch(e) {
         setRestaurantName(e.target.value)
+        // setRestId(e.target)
+        // console.log(e.target.value)
     }
 
     const locatedRestaurant = restaurants.find((restaurant) => restaurant.restaurant_name == restaurantName)
-    console.log(locatedRestaurant)
+    // console.log(locatedRestaurant)
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,7 +30,7 @@ function PostForm({ handleNewPostForm, restaurants }) {
             },
             body: JSON.stringify({
                 //dont have user_id added, not sure how to do that
-                restaurant_id: locatedRestaurant,
+                restaurant_id: locatedRestaurant.id,
                 rating: rating,
                 image: image,
                 review: review
@@ -63,8 +66,8 @@ function PostForm({ handleNewPostForm, restaurants }) {
             <form onSubmit={handleSubmit} className="form-container">
                 <h4 className="form-header">Create a Post</h4>
                 <label>Restaurant Name:
-                    <select value={restaurantName} onChange={handleRestaurantSearch}>
-                        {restaurants.map(restaurant => <option value={restaurant.restaurant_name}>{restaurant.restaurant_name}</option>)}
+                    <select value={restaurantName} onChange={handleRestaurantSearch} >
+                        {restaurants.map(restaurant => <option value={restaurant.restaurant_name} key={restaurant.id}>{restaurant.restaurant_name}</option>)}
                     </select>
                 </label>
                 <button>Don't see your restaurant? Add it here!</button>

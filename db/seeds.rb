@@ -13,10 +13,10 @@ end
 20.times do
     restaurant_name = Faker::Restaurant.unique.name
     category = Faker::Restaurant.type
-    total_rating = 0
+    # total_rating = 0
     image = Faker::LoremFlickr.image(search_terms: ['food'])
     location = Faker::Address.unique.full_address
-    Restaurant.create(restaurant_name: restaurant_name, category: category, total_rating: total_rating, image: image, location: location)
+    Restaurant.create(restaurant_name: restaurant_name, category: category, image: image, location: location)
 end
 
 #Post seed data

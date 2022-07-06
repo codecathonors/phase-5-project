@@ -25,7 +25,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     private
 
     def restaurant_params
-        params.permit(:restaurant_name, :category, :image, :total_rating, :location)
+        params.permit(:restaurant_name, :category, :image, :total_rating, :location, :post)
     end
 
     def render_not_found

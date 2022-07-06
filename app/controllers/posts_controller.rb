@@ -31,7 +31,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     private
 
     def post_params
-        params.permit(:likes, :dislikes, :rating, :review, :image, :user_id, :restaurant_id)
+        params.permit(:likes, :dislikes, :rating, :review, :image, :user_id, :restaurant_id, :restaurant)
     end
 
     def render_not_found

@@ -4,12 +4,12 @@ import Search from "./Search";
 import RestaurantForm from "./RestaurantForm";
 
 function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTotalRating, handleSortAlphabeticalByRestName, filteredRestaurants, handleSearch, search, restaurants }) {
-    // console.log(restaurants.find(restaurant => { return restaurant.posts > 1}))
+    // console.log(filteredRestaurants)
 
     const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
     
     const avg_rating = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
-  console.log(avg_rating)
+  // console.log(avg_rating)
 
     const sortedRestaurants = filteredRestaurants.sort((a, b) => {
       if (sortMethod === "alphabetical") {
@@ -23,6 +23,39 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
         restaurant={restaurant} />
     ))
         
+
+    const handleRestToggle = () => {
+      setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
+    }
+
+
+
+  return (
+    <>
+      <h1 className="top-of-page-title">Check out these Restaurants!</h1>
+      <Search handleSearch={handleSearch} search={search}/>
+      <button onClick={handleRestToggle}>{isRestaurantFormVisible ? "collapse" : "add a restaurant!"}</button>
+      {isRestaurantFormVisible ? <RestaurantForm handleNewRestaurantForm={handleNewRestaurantForm}/> : <></>}
+      <div className="sortbtns">
+        <button className="sort" onClick={handleSortAlphabeticalByRestName}>Sort A-Z by Restaurant Name</button>
+        <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button>
+      </div>
+      <div className="restaurant-grid-container">
+          {sortedRestaurants.map((restaurant) => {
+            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
+          })}
+          {/* {sortedRestaurantsRating.map((restaurant) => {
+            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
+          })} */}
+      </div>
+     
+    </>
+  );
+}
+
+export default RestaurantsList;
+
+
     // const sortedRestaurants = filteredRestaurants.sort((a, b) => {
     //   if (sortMethod === "alphabetical") {
     //       return a.restaurant_name.localeCompare(b.restaurant_name);
@@ -57,38 +90,3 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortByTot
     //       //     key={restaurant.id}
     //       //     restaurant={restaurant} />
     // }
-    const handleRestToggle = () => {
-      setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
-    }
-
-    // console.log(handleFilter())
-
-  //   function relayAverageRating() {
-
-  //   // handleAverageRating(avg_rating)
-  // }
-
-  return (
-    <>
-      <h1 className="top-of-page-title">Check out these Restaurants!</h1>
-      <Search handleSearch={handleSearch} search={search}/>
-      <button onClick={handleRestToggle}>{isRestaurantFormVisible ? "collapse" : "add a restaurant!"}</button>
-      {isRestaurantFormVisible ? <RestaurantForm handleNewRestaurantForm={handleNewRestaurantForm}/> : <></>}
-      <div className="sortbtns">
-        <button className="sort" onClick={handleSortAlphabeticalByRestName}>Sort A-Z by Restaurant Name</button>
-        <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button>
-      </div>
-      <div className="restaurant-grid-container">
-          {sortedRestaurants.map((restaurant) => {
-            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
-          })}
-          {/* {sortedRestaurantsRating.map((restaurant) => {
-            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
-          })} */}
-      </div>
-     
-    </>
-  );
-}
-
-export default RestaurantsList;
