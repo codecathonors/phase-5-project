@@ -130,7 +130,7 @@ code {
 }
 
 .restaurant-grid-item{
-  background-color: rgba(64, 158, 235, 0.8);
+  background-color: #83BDC0;
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 25px;
   font-size: 12px;
@@ -139,7 +139,7 @@ code {
   border-radius: 10px;
 }
 .restaurant-grid-item:hover{
-  background-color: rgba(143, 227, 241, 0.8);
+  background-color: #549BAD;
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 25px;
   font-size: 12px;
@@ -236,4 +236,26 @@ code {
   border-radius: 10px;
   font-size: 13px;
   padding: 10px
+}
+
+.restaurant-profile-name {
+  font-size: 50px;
+  letter-spacing: 5px;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.restaurant-profile-location {
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.restaurant-profile-category{
+  font-weight: 100;
+  margin-top: 5px;
+}
+
+.restaurant-profile-user-ratings {
+  font-size: 15px;
 }

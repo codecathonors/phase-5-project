@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 // import { Alert } from 'react-bootstrap';
 
 function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
@@ -8,6 +9,8 @@ function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
     const [image, setImage] = useState("")
     const [review, setReview] = useState("")
     const [postFormError, setPostFormError] = useState("");
+
+    const history = useHistory()
     // console.log(nowUser)
 
     function handleRestaurantSearch(e) {
@@ -65,6 +68,10 @@ function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
     }
 
     // console.log(user)
+    function handleClick(e) {
+        e.preventDefault()
+        history.push("/restaurants")
+    }
 
  
     return (
@@ -76,19 +83,22 @@ function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
                         {restaurants.map(restaurant => <option value={restaurant.restaurant_name} key={restaurant.id}>{restaurant.restaurant_name}</option>)}
                     </select>
                 </label>
-                <button>Don't see your restaurant? Add it here!</button>
+                <br></br>
+                <button onClick={handleClick} className="normal">Don't see your restaurant? Add it here!</button>
+                <br></br>
                 <label>Rating:
                     <input onChange={e => setRating(e.target.value)}></input>
                 </label>
+                <br></br>
                 <label>Image:
-                    <input onChange={e => setImage(e.target.value)}>
-                    </input>
+                    <input onChange={e => setImage(e.target.value)}></input>
                 </label>
+                <br></br>
                 <label>Review:
-                    <input onChange={e => setReview(e.target.value)}>
-                    </input>
+                    <input onChange={e => setReview(e.target.value)}></input>
                 </label>
-                <button>Post it!</button>
+                <br></br>
+                <button className="normal">Post it!</button>
                 {postFormError && <div className="error">{postFormError.join(", ")}</div>}
             </form>
         </div>
