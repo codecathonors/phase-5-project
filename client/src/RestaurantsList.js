@@ -28,10 +28,10 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortAlpha
     <>
       <h1 className="top-of-page-title">Check out these Restaurants!</h1>
       <Search handleSearch={handleSearch} search={search}/>
-      <button onClick={handleRestToggle}>{isRestaurantFormVisible ? "collapse" : "add a restaurant!"}</button>
+      <button className="on-post-page-normal" onClick={handleRestToggle}>{isRestaurantFormVisible ? "collapse" : "add a restaurant!"}</button>
       {isRestaurantFormVisible ? <RestaurantForm handleNewRestaurantForm={handleNewRestaurantForm}/> : <></>}
       <div className="sortbtns">
-        <button className="sort" onClick={handleSortAlphabeticalByRestName}>Sort A-Z by Restaurant Name</button>
+        <button className="on-post-page-normal" onClick={handleSortAlphabeticalByRestName}>Sort A-Z by Restaurant Name</button>
         {/* <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button> */}
       </div>
       <div className="restaurant-grid-container">

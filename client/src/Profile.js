@@ -21,8 +21,8 @@ function Profile( { user}) {
     <>
     <div>
         {/* <h1>User PROFILE</h1> */}
-        <h1 className="top-of-page-title">{user.username}'s profile</h1>
-        <img src={user.profile_picture}/>
+        <h1 className="top-of-page-title-users">{user.username}'s profile</h1>
+        <img className="profile-image" src={user.profile_picture}/>
         <p>{user.profile_bio ? user.profile_bio: "this user doesn't have a bio set up"}</p>
         <button onClick={handleClick}>{isEditButtonVisible ? "Nvm" : "Edit Profile"}</button>
         {/* {isEditButtonVisible ? <EditProfile user={userProfile[0]} onUpdatedProfile={(updatedProfile) => {setIsEditButtonVisible(false); return onUpdatedProfile(updatedProfile);}} /> : <></>} */}

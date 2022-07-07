@@ -26,11 +26,11 @@ function PostsList( { users, user, posts, restaurants, handleNewPostForm, sortMe
   return (
     <div>
       <h1 className="top-of-page-title">Posts</h1>
-      <button onClick={handleToggle}>{isPostFormVisible ? "collapse" : "add a post!"} </button>
+      <button onClick={handleToggle} className="on-post-page-normal">{isPostFormVisible ? "collapse" : "add a post!"} </button>
       {isPostFormVisible ? <PostForm users={users} nowUser={user} restaurants={restaurants} handleNewPostForm={handleNewPostForm} /> : <></>}
       <div className="sortbtns">
-        <button className="sort" onClick={handleSortByLikes}>Sort by Likes</button>
-        <button className="sort" onClick={handleSortByDislikes}>Sort by Dislikes</button>
+        <button className="on-post-page-normal" onClick={handleSortByLikes}>Sort by Likes</button>
+        <button className="on-post-page-normal" onClick={handleSortByDislikes}>Sort by Dislikes</button>
       </div>
       <div className="post-grid-container">
         {/* {posts.map(post => <SinglePostCard post={post} key={post.id}/>)} */}

@@ -82,15 +82,16 @@ function SinglePostCard( {post} ) {
 
   return (
     <div className="post-grid-item">
-        <h1>{post.user.username}</h1>
+        <h1 className="post-grid-item-username">{post.user.username}</h1>
         {/* <img className="grid-item-image" src={post.user.profile_picture}/> */}
-        <h2>{post.restaurant.restaurant_name}</h2>
-        <h3>{post.restaurant.location}</h3>
-        <h4>User rating: {post.rating}</h4>
+        <h2 className="post-grid-item-restaurant-name">{post.restaurant.restaurant_name}</h2>
+        <h3 className="post-grid-item-restaurant-location">{post.restaurant.location}</h3>
+        <br></br>
+        <h4 className="post-grid-item-user-rating">User rating: {post.rating}</h4>
         <button onClick={handleLike} className={isLikeClicked ? "normal" : "like-clicked"} value={likes}>Likes: {post.likes}</button>
         <button onClick={handleDislike} className={isDislikeClicked ? "normal" : "dislike-clicked"}>Dislikes: {post.dislikes}</button>
-        <img src={post.image} style={{width:100}}/>
-        <p>{post.short_review}</p>
+        <img className="post-grid-item-image" src={post.image} style={{width:100}}/>
+        <p className="post-grid-item-short-review">{post.short_review}</p>
         <Link to={`/posts/${post.id}`}>View more</Link>
         
     </div>

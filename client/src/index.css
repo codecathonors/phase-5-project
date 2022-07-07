@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: rgb(142, 182, 169); */
+  background-color: #f7c9b6;
   text-align: center;
 }
 
@@ -15,31 +15,15 @@ code {
 }
 
 .like-clicked{
-  background-color: rgb(89, 181, 209);
+  background-color: #c1d8af;
   border-radius: 2px;
-  color: azure;
+  color: black;
 }
-
-/* .pageNumbers {
-  list-style: none;
-  display: flex;
-}
-
-.pageNumbers li{
-  padding: 10px;
-  border: 1px solid black;
-  cursor: pointer;
-}
-
-.pageNumbers li.active {
-  background-color: rgb(68, 105, 226);
-  color: black
-} */
 
 .dislike-clicked{
-  background-color: rgb(1, 39, 167);
+  background-color: rgb(214, 125, 125);
   border-radius: 2px;
-  color: azure;
+  color: black;
 }
 
 .error {
@@ -47,47 +31,68 @@ code {
   text-transform: uppercase;
 }
 
-/* .post-card-container {
-  padding-bottom: 15px;
-  border-radius: 15px;
-  overflow: hidden;
-  justify-content: center;
-} */
-
 .post-grid-container {
   display: grid;
-  /* grid-template-columns: auto auto auto auto auto; */
-  /* background-color: #2196F3; */
-  /* grid-template-columns: repeat(3, 1fr); */
-  /* grid-template-rows: 50px; */
-  /* grid-auto-rows: 1fr; */
   column-gap: 50px;
   row-gap: 20px;
   padding: 10px;
   margin: auto;
   justify-content: center;
-  /* grid-auto-rows: 100px; */
 }
 
 .post-grid-item {
-  background-color: rgba(180, 212, 226, 0.8);
-  border: 2px solid rgba(3, 136, 141, 0.8);
-  padding: 25px;
+  background-color: #83BDC0;
+  border: 3px solid #549BAD;
+  padding: 10px;
+  padding-top: 15px;
   font-size: 9px;
   text-align: left;
-  height: 250px;
-  width: 600px;
-  /* width: 100%; */
+  width: 700px;
+  height: auto;
   margin: auto;
   border-radius: 10px;
-  
 }
 
-.grid-item-image {
-  /* width: 100px;
-  height: auto; 
-  not working*/
+.post-grid-item-username {
+  font-size: 32px;
+  font-weight: 300;
+  margin: 0;
 }
+
+.post-grid-item-restaurant-name{
+  font-weight: 500;
+  margin: 0;
+}
+
+.post-grid-item-restaurant-location {
+  /* float: left; */
+  font-weight: 200;
+  font-style: italic;
+  margin-top: 3px;
+  margin-bottom: 0;
+  /* margin: 0; */
+}
+
+.post-grid-item-user-rating {
+  margin: 0;
+  font-weight: 300;
+  font-size: 12px;
+  padding-bottom: 4px;
+}
+
+.post-grid-item-image{
+  float: right;
+}
+
+.post-grid-item-short-review{
+  float: inline-end;
+}
+
+.normal {
+  background-color: #f8eae5;
+  border-radius: 5px;
+}
+
 
 .user-grid-container {
   display: grid;
@@ -144,26 +149,27 @@ code {
 }
 
 .nav {
-  background-color: rgb(100, 184, 190);
-  color: white;
+  background-color: #83BDC0;
+  color: rgb(26, 19, 19);
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   padding: 0 1rem;
   overflow: hidden;
 }
 
 .site-title {
-  font-size: 25px;
-  letter-spacing: 2px;
+  font-size: 30px;
+  letter-spacing: 4px;
+  /* text-decoration: double; */
 }
 
 .nav ul{
   padding: 0;
   list-style: none;
   display: flex;
-  gap: 1rem
+  gap: 2rem
 }
 
 .nav li{
@@ -185,6 +191,7 @@ code {
 
 .nav li:hover {
   background-color: rgb(58, 153, 156);
+  height: 100%;
 }
 
 .nav-right {
@@ -197,5 +204,36 @@ code {
   font-size: 100px;
   padding: 0;
   margin: auto;
+  font-weight: 300;
+  /* float: left; */
 }
 
+.top-of-page-title-users{
+  text-align: center;
+  font-size: 100px;
+  padding: 0;
+  margin: auto;
+  font-weight: 300;
+}
+
+.on-post-page-normal{
+  float: inline-end;
+  margin: 10px;
+  background-color: #f8eae5;
+  border-radius: 5px;
+}
+
+.profile-image {
+  height: 300px;
+  width: auto;
+  /* float: left; */
+  margin: auto;
+  padding-left: 10px;
+}
+
+.searchbar {
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 13px;
+  padding: 10px
+}
