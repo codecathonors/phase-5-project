@@ -26,10 +26,10 @@ function SingleUserProfile( { users, onUpdatedProfile }) {
         {/* <h1>User PROFILE</h1> */}
         <h1 className="top-of-page-title">{userProfile[0].username}'s profile</h1>
         <img src={userProfile[0].profile_picture}/>
-        <p>{userProfile[0].profile_bio ? userProfile[0].profile_bio: "this user hasn't made any posts"}</p>
-        <button onClick={handleClick}>{isEditButtonVisible ? "Nvm" : "Edit Profile"}</button>
+        <p className="users-profile-bio">{userProfile[0].profile_bio ? userProfile[0].profile_bio: "this user hasn't made any posts"}</p>
+        {/* <button onClick={handleClick}>{isEditButtonVisible ? "Nvm" : "Edit Profile"}</button> */}
         {isEditButtonVisible ? <EditProfile user={userProfile[0]} onUpdatedProfile={(updatedProfile) => {setIsEditButtonVisible(false); return onUpdatedProfile(updatedProfile);}} /> : <></>}
-        <p>Previous reviews: {userProfile[0].posts.map(post => post.short_review)}</p>
+        <p className="users-profile-short-review">Previous reviews: {userProfile[0].posts.map(post => post.short_review)}</p>
     </div>
  </>
 );

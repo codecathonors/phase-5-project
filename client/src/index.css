@@ -259,3 +259,12 @@ code {
 .restaurant-profile-user-ratings {
   font-size: 15px;
 }
+
+.users-profile-bio {
+  font-size: 50px;
+  font-style: italic;
+}
+
+.users-profile-short-review{
+  font-size: 30px;
+}
