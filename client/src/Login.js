@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 // import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function Login( { user, setIsAuthenticated, handleUpdateUser }) {
+function Login( { onLogin, handleUpdateUser }) {
   // console.log(user)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +29,7 @@ function Login( { user, setIsAuthenticated, handleUpdateUser }) {
                 if (res.status == 201 || 200) {
                     res.json().then((json) => {
                       console.log(json)
-                      handleUpdateUser(user)
+                      onLogin(user)
                       // setIsAuthenticated(true)
                       history.push("/")
                     })

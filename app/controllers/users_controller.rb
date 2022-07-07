@@ -8,14 +8,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     end
 
     def show
-        # user = User.find_by!(id: params[:id])
-        # render json: user, status: :ok
         render json: @current_user
-        # if current_user
-        #     render json: @current_user, status: :ok
-        # else
-        #     render json: "Not authenticated", status: :unauthorized
-        # end
     end
 
     def create
@@ -39,7 +32,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     private
 
     def user_params
-        # params.permit(:username, :password_digest, :password_confirmation, :profile_bio, :profile_picture)
         params.permit(:username, :password, :password_confirmation, :profile_bio, :profile_picture)
     end
 

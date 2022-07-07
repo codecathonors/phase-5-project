@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-// import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function Signup( { setUser, handleUpdateUser }) {
+function Signup( { setUser, handleUpdateUser, onLogin }) {
     const [error, setError] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -30,8 +29,9 @@ function Signup( { setUser, handleUpdateUser }) {
             if (res.status === 201) {
                 res.json().then((user) => {
                   console.log(user)
+                  onLogin(user)
                   history.push("/")
-                  handleUpdateUser(user)
+                  
                 })
               }
               else if (res.status === 200){

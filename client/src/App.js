@@ -18,7 +18,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [sortMethod, setSortMethod] = useState("rating");
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  // const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
  
 
@@ -40,7 +40,7 @@ function App() {
       if (res.ok) {
         res.json()
           .then((user) => {
-            setIsAuthenticated(true);
+            // setIsAuthenticated(true);
             setUser(user);
           });
       }
@@ -95,7 +95,7 @@ function App() {
   // }
   
 
-  if (!isAuthenticated) return <Login error={'please log in'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
+  if (!user) return <Login onLogin={setUser} />
 
   
   return (
@@ -103,20 +103,20 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/me">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <Profile user={user}/> 
             {/* <h1>{user.username}'s Profile!</h1> */}
           </Route>
           <Route exact path="/login">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <Login handleUpdateUser={handleUpdateUser} user={user}/>
           </Route>
           <Route exact path="/signup">
-            <Header />
-            <Signup handleUpdateUser={handleUpdateUser} setIsAuthenticated={setIsAuthenticated}/>
+            <Header user={user} setUser={setUser}/>
+            <Signup handleUpdateUser={handleUpdateUser} />
           </Route>
           <Route exact path="/">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <PostsList users={users} user={user} posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes}/>
           </Route>
           <Route exact path="/users">

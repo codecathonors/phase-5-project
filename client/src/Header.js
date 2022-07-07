@@ -15,7 +15,7 @@ function Header( {user, setUser}) {
                 }
             })
         history.push('/login')
-        console.log(user)
+        // console.log(user)
     }
     return(
         <>
