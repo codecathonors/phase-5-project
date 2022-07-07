@@ -17,9 +17,25 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [sortMethod, setSortMethod] = useState("rating");
-  const [currentUser, setCurrentUser] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [user, setUser] = useState(null)
+  // const [currentUser, setCurrentUser] = useState("");
   // const [avgRating, setAvgRating] = useState([]);
   // const [restId, setRestId] = useState([])
+
+  // useEffect(() => {
+  //   fetch('/me')
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         res.json()
+  //           .then((user) => {
+  //             setIsAuthenticated(true);
+  //             setUser(user);
+  //           });
+  //       }
+  //     });
+
+  // }, []);
 
   useEffect(() => {
     fetch("/users")
@@ -34,10 +50,24 @@ function App() {
   }, []);
 
   useEffect(() => {
+    fetch('/me')
+    .then((res) => {
+      if (res.ok) {
+        res.json()
+          .then((user) => {
+            setIsAuthenticated(true);
+            setUser(user);
+          });
+      }
+    });
     fetch("/posts")
       .then((r) => r.json())
       .then((posts) => setPosts(posts));
   }, []);
+
+  const handleUpdateUser = (user) => {
+    setUser(user)
+  }
 
   const handleNewPostForm = (newPost) => {
     setPosts([...posts, newPost])
@@ -70,14 +100,14 @@ function App() {
   }
 
   //think I'll need something like this for the profile patch
-  const onUpdatedProfile = (updatedProfile) => {
-    const newUpdatedProfile = user => {
-      if (user.id === updatedProfile.id) {
-        return updatedProfile
-      } else {return user}
-    }
-    setCurrentUser(newUpdatedProfile)
-  }
+  // const onUpdatedProfile = (updatedProfile) => {
+  //   const newUpdatedProfile = user => {
+  //     if (user.id === updatedProfile.id) {
+  //       return updatedProfile
+  //     } else {return user}
+  //   }
+  //   setCurrentUser(newUpdatedProfile)
+  // }
 
   // function handleChangeRestRating(avg_rating, rest_id) {
   //   // console.log(restaurants.map(restaurant => restaurant.total_rating))
@@ -123,6 +153,7 @@ function App() {
   //     )
   //   }
       // }), []}
+      if (!isAuthenticated) return <Login error={'please log in'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
 
   
   return (
@@ -134,36 +165,36 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Header />
-            <Login />
+            <Login handleUpdateUser={handleUpdateUser} user={user}/>
           </Route>
           <Route exact path="/signup">
             <Header />
-            <Signup />
+            <Signup handleUpdateUser={handleUpdateUser} setIsAuthenticated={setIsAuthenticated}/>
           </Route>
           <Route exact path="/">
             <Header />
             <PostsList posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes}/>
           </Route>
           <Route exact path="/users">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <UsersList users={users} />
           </Route>
           <Route exact path="/restaurants">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
             />
           </Route>
           <Route path="/restaurants/:id">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <SingleRestaurantProfile restaurants={restaurants}/>
           </Route>
           <Route path="/posts/:id">
-            <Header />
+            <Header user={user} setUser={setUser}/>
             <SinglePostProfile posts={posts}/>
           </Route>
           <Route path="/users/:id">
-            <Header />
-            <SingleUserProfile onUpdatedProfile={onUpdatedProfile} users={users}/>
+            <Header user={user} setUser={setUser}/>
+            <SingleUserProfile users={users}/>
           </Route>
         </Switch>
       </div>

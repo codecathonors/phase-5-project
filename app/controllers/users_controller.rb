@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+skip_before_action :authorize, only: :create
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     def index
@@ -7,12 +8,19 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     end
 
     def show
-        user = User.find_by!(id: params[:id])
-        render json: user, status: :ok
+        # user = User.find_by!(id: params[:id])
+        # render json: user, status: :ok
+        render json: @current_user
+        # if current_user
+        #     render json: @current_user, status: :ok
+        # else
+        #     render json: "Not authenticated", status: :unauthorized
+        # end
     end
 
     def create
         user = User.create!(user_params)
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 
@@ -31,7 +39,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     private
 
     def user_params
-        params.permit(:username, :password_digest, :password_confirmation, :profile_bio, :profile_picture)
+        # params.permit(:username, :password_digest, :password_confirmation, :profile_bio, :profile_picture)
+        params.permit(:username, :password, :password_confirmation, :profile_bio, :profile_picture)
     end
 
     def render_not_found

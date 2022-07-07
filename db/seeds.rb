@@ -3,11 +3,13 @@ puts "Starting seed"
 #User seed data
 50.times do 
     username = Faker::Internet.unique.username(specifier:3..25)
-    password_digest = Faker::Internet.password(min_length: 6, max_length: 20)
+    password = Faker::Internet.password(min_length: 6, max_length: 20)
     profile_picture = Faker::LoremFlickr.image(search_terms: ['food'])
     profile_bio = Faker::Lorem.paragraph(sentence_count: 4)
-    User.create(username: username, password_digest: password_digest, profile_picture: profile_picture, profile_bio: profile_bio)
+    User.create(username: username, password: password, profile_picture: profile_picture, profile_bio: profile_bio)
 end
+
+cat = User.create(username: "catho", password: "password1", profile_picture: "https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg", profile_bio: "heeeeeeeeeeeeeeeeeeeeeeeey")
 
 #Restaurant seed data
 20.times do
