@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 // import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function Signup( { setUser }) {
+function Signup( { setUser, handleUpdateUser }) {
     const [error, setError] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -10,21 +10,7 @@ function Signup( { setUser }) {
     const [profile_bio, setProfileBio] = useState("")
     const [profile_picture, setProfilePicture] = useState("")
 
-    // const [form, setForm] = useState({
-    //     username: "",
-    //     password: "",
-    //     password_confirmation: "",
-    //     profile_picture: "",
-    //     profile_bio: ""
-    // })
-
     let history = useHistory()
-
-    // function handleChange(e) {
-    //     setForm({ ...form, [e.target.name]: e.target.value })
-    // }
-    // console.log("username", form.username)
-    
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -42,9 +28,10 @@ function Signup( { setUser }) {
         .then(res => {
             console.log(res)
             if (res.status === 201) {
-                res.json().then((json) => {
-                  console.log(json)
+                res.json().then((user) => {
+                  console.log(user)
                   history.push("/")
+                  handleUpdateUser(user)
                 })
               }
               else if (res.status === 200){

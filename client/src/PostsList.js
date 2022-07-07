@@ -3,9 +3,9 @@ import { useState } from "react";
 import SinglePostCard from "./SinglePostCard";
 import PostForm from "./PostForm";
 
-function PostsList( { posts, restaurants, handleNewPostForm, sortMethod, handleSortByLikes, handleSortByDislikes }) {
+function PostsList( { users, user, posts, restaurants, handleNewPostForm, sortMethod, handleSortByLikes, handleSortByDislikes }) {
     const [isPostFormVisible, setIsPostFormVisible] = useState(false)
-    // console.log(posts)
+    console.log(user)
 
     function handleToggle() {
       setIsPostFormVisible(isPostFormVisible => !isPostFormVisible)
@@ -27,7 +27,7 @@ function PostsList( { posts, restaurants, handleNewPostForm, sortMethod, handleS
     <div>
       <h1 className="top-of-page-title">Posts</h1>
       <button onClick={handleToggle}>{isPostFormVisible ? "collapse" : "add a post!"} </button>
-      {isPostFormVisible ? <PostForm restaurants={restaurants} handleNewPostForm={handleNewPostForm} /> : <></>}
+      {isPostFormVisible ? <PostForm users={users} nowUser={user} restaurants={restaurants} handleNewPostForm={handleNewPostForm} /> : <></>}
       <div className="sortbtns">
         <button className="sort" onClick={handleSortByLikes}>Sort by Likes</button>
         <button className="sort" onClick={handleSortByDislikes}>Sort by Dislikes</button>

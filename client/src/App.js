@@ -9,6 +9,7 @@ import PostsList from "./PostsList";
 import SinglePostProfile from "./SinglePostProfile";
 import SingleUserProfile from "./SingleUserProfile";
 import Header from "./Header";
+import Profile from "./Profile";
 
 
 function App() {
@@ -19,23 +20,7 @@ function App() {
   const [sortMethod, setSortMethod] = useState("rating");
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
-  // const [currentUser, setCurrentUser] = useState("");
-  // const [avgRating, setAvgRating] = useState([]);
-  // const [restId, setRestId] = useState([])
-
-  // useEffect(() => {
-  //   fetch('/me')
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         res.json()
-  //           .then((user) => {
-  //             setIsAuthenticated(true);
-  //             setUser(user);
-  //           });
-  //       }
-  //     });
-
-  // }, []);
+ 
 
   useEffect(() => {
     fetch("/users")
@@ -108,8 +93,62 @@ function App() {
   //   }
   //   setCurrentUser(newUpdatedProfile)
   // }
+  
 
-  // function handleChangeRestRating(avg_rating, rest_id) {
+  if (!isAuthenticated) return <Login error={'please log in'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
+
+  
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route exact path="/me">
+            <Header />
+            <Profile user={user}/> 
+            {/* <h1>{user.username}'s Profile!</h1> */}
+          </Route>
+          <Route exact path="/login">
+            <Header />
+            <Login handleUpdateUser={handleUpdateUser} user={user}/>
+          </Route>
+          <Route exact path="/signup">
+            <Header />
+            <Signup handleUpdateUser={handleUpdateUser} setIsAuthenticated={setIsAuthenticated}/>
+          </Route>
+          <Route exact path="/">
+            <Header />
+            <PostsList users={users} user={user} posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes}/>
+          </Route>
+          <Route exact path="/users">
+            <Header user={user} setUser={setUser}/>
+            <UsersList users={users} />
+          </Route>
+          <Route exact path="/restaurants">
+            <Header user={user} setUser={setUser}/>
+            <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
+            />
+          </Route>
+          <Route path="/restaurants/:id">
+            <Header user={user} setUser={setUser}/>
+            <SingleRestaurantProfile restaurants={restaurants}/>
+          </Route>
+          <Route path="/posts/:id">
+            <Header user={user} setUser={setUser}/>
+            <SinglePostProfile posts={posts}/>
+          </Route>
+          <Route path="/users/:id">
+            <Header user={user} setUser={setUser}/>
+            <SingleUserProfile users={users}/>
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+// function handleChangeRestRating(avg_rating, rest_id) {
   //   // console.log(restaurants.map(restaurant => restaurant.total_rating))
   //   const totalRating = restaurants.map(restaurant => restaurant.total_rating)
   //   setAvgRating(avg_rating)
@@ -153,56 +192,6 @@ function App() {
   //     )
   //   }
       // }), []}
-      if (!isAuthenticated) return <Login error={'please log in'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
-
-  
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route exact path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route exact path="/login">
-            <Header />
-            <Login handleUpdateUser={handleUpdateUser} user={user}/>
-          </Route>
-          <Route exact path="/signup">
-            <Header />
-            <Signup handleUpdateUser={handleUpdateUser} setIsAuthenticated={setIsAuthenticated}/>
-          </Route>
-          <Route exact path="/">
-            <Header />
-            <PostsList posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes}/>
-          </Route>
-          <Route exact path="/users">
-            <Header user={user} setUser={setUser}/>
-            <UsersList users={users} />
-          </Route>
-          <Route exact path="/restaurants">
-            <Header user={user} setUser={setUser}/>
-            <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
-            />
-          </Route>
-          <Route path="/restaurants/:id">
-            <Header user={user} setUser={setUser}/>
-            <SingleRestaurantProfile restaurants={restaurants}/>
-          </Route>
-          <Route path="/posts/:id">
-            <Header user={user} setUser={setUser}/>
-            <SinglePostProfile posts={posts}/>
-          </Route>
-          <Route path="/users/:id">
-            <Header user={user} setUser={setUser}/>
-            <SingleUserProfile users={users}/>
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
-}
-
-export default App;
   // const avg = restaurants.map(restaurant => restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length)
 
   // const averageForRest = restaurants.map(restaurant => restaurant.total_rating)
@@ -235,4 +224,22 @@ export default App;
     //     .then(data => console.log('response', data))
     // }
     // )
+
+     // const [currentUser, setCurrentUser] = useState("");
+  // const [avgRating, setAvgRating] = useState([]);
+  // const [restId, setRestId] = useState([])
+
+  // useEffect(() => {
+  //   fetch('/me')
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         res.json()
+  //           .then((user) => {
+  //             setIsAuthenticated(true);
+  //             setUser(user);
+  //           });
+  //       }
+  //     });
+
+  // }, []);
   

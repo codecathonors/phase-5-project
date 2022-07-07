@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 // import { Alert } from 'react-bootstrap';
 
-function PostForm({ handleNewPostForm, restaurants }) {
+function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
     const [restaurantName, setRestaurantName] = useState("")
     const [restId, setRestId] = useState("")
     const [rating, setRating] = useState(0)
     const [image, setImage] = useState("")
     const [review, setReview] = useState("")
     const [postFormError, setPostFormError] = useState("");
-    // console.log(restaurants)
+    // console.log(nowUser)
 
     function handleRestaurantSearch(e) {
         setRestaurantName(e.target.value)
@@ -17,9 +17,11 @@ function PostForm({ handleNewPostForm, restaurants }) {
     }
 
     const locatedRestaurant = restaurants.find((restaurant) => restaurant.restaurant_name == restaurantName)
-    console.log(locatedRestaurant)
+    // console.log(locatedRestaurant)
 
-    
+    const currentUser = users.find((user) => user.username == nowUser.username)
+    console.log(nowUser)
+    console.log(users)
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -31,8 +33,8 @@ function PostForm({ handleNewPostForm, restaurants }) {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                //dont have user_id added, not sure how to do that
-                restaurant_id: locatedRestaurant, //maybe locatedRestaurant.id?
+                user_id: currentUser.id,
+                restaurant_id: locatedRestaurant.id, //maybe locatedRestaurant.id?
                 rating: rating,
                 image: image,
                 review: review
@@ -40,18 +42,18 @@ function PostForm({ handleNewPostForm, restaurants }) {
         })
         .then(res => {
             console.log(res)
-            if (res.ok) {
-              res.json().then((json) => {
-                console.log(json.errors);
-                setPostFormError(json.errors);
-                // window.location.reload(true);
-              })
-            } //above is doing what else should be doing
-            else {
+            if (res.status === 201) {
               res.json().then((json) => {
                 console.log(json);
+                // setPostFormError(json.errors);
+                window.location.reload(true);
+              })
+            } //above is doing what else should be doing
+            else if (res.status === 200) {
+              res.json().then((json) => {
+                console.log(json.errors);
                 //maybe handleNewRestaurantForm
-                // setRestaurantPostError(json.errors);
+                setPostFormError(json.errors);
               })
             }
           })
@@ -61,6 +63,8 @@ function PostForm({ handleNewPostForm, restaurants }) {
         setImage(image)
         setReview(review)
     }
+
+    // console.log(user)
 
  
     return (

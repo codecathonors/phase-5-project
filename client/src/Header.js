@@ -27,8 +27,8 @@ function Header( {user, setUser}) {
                     <li><NavLink exact to="/">Home</NavLink></li>
                     <li><NavLink to="/restaurants">Restaurants</NavLink></li>
                     <li><NavLink to="/users">Social</NavLink></li>
+                    <li><NavLink to="/me">Profile</NavLink></li>
                     <li><NavLink to="/login" onClick={handleLogout}>Logout</NavLink></li>
-                    {/* <li><NavLink to="/me">Profile</NavLink></li> */}
                 </ul>
                 {/* <button className="nav-right">Logout</button> */}
             </nav>
