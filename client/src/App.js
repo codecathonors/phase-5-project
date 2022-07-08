@@ -21,19 +21,6 @@ function App() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
  
-
-  useEffect(() => {
-    fetch("/users")
-      .then((r) => r.json())
-      .then((users) => setUsers(users));
-  }, []);
-
-  useEffect(() => {
-    fetch("/restaurants")
-      .then((r) => r.json())
-      .then((restaurants) => setRestaurants(restaurants));
-  }, []);
-
   useEffect(() => {
     fetch('/me')
     .then((res) => {
@@ -49,6 +36,22 @@ function App() {
       .then((r) => r.json())
       .then((posts) => setPosts(posts));
   }, []);
+
+  useEffect(() => {
+    fetch("/users")
+      .then((r) => r.json())
+      .then((users) => setUsers(users));
+  }, []);
+
+  useEffect(() => {
+    fetch("/restaurants")
+      .then((r) => r.json())
+      .then((restaurants) => setRestaurants(restaurants));
+  }, []);
+
+  const filteredRestaurants = restaurants.filter(restaurant => restaurant.restaurant_name.toLowerCase().includes(search.toLowerCase()))
+  console.log(filteredRestaurants)
+ 
 
   const handleUpdateUser = (user) => {
     setUser(user)
@@ -66,16 +69,6 @@ function App() {
     setSearch(e.target.value)
   }
 
-  const filteredRestaurants = restaurants.filter(restaurant => restaurant.restaurant_name.toLowerCase().includes(search.toLowerCase()))
-
-  const handleSortAlphabeticalByRestName = () => {
-    setSortMethod("alphabetical");
-  } 
-
-  const handleSortByTotalRating = () => {
-    setSortMethod("rating");
-  } 
-
   const handleSortByLikes = () => {
     setSortMethod("likes");
   }
@@ -83,6 +76,10 @@ function App() {
   const handleSortByDislikes = () => {
     setSortMethod("dislikes");
   }
+
+  const handleSortAlphabeticalByRestName = () => {
+    setSortMethod("alphabetical");
+  } 
 
   //think I'll need something like this for the profile patch
   // const onUpdatedProfile = (updatedProfile) => {
@@ -95,8 +92,7 @@ function App() {
   // }
   
 
-  if (!user) return <Login onLogin={setUser} />
-
+  // if (!user) return <Login onLogin={setUser} />
   
   return (
     <BrowserRouter>
@@ -109,28 +105,28 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Header user={user} setUser={setUser}/>
-            <Login handleUpdateUser={handleUpdateUser} user={user}/>
+            <Login handleUpdateUser={handleUpdateUser} user={user} onLogin={setUser}/>
           </Route>
           <Route exact path="/signup">
             <Header user={user} setUser={setUser}/>
-            <Signup handleUpdateUser={handleUpdateUser} />
+            <Signup handleUpdateUser={handleUpdateUser} onLogin={setUser}/>
           </Route>
           <Route exact path="/">
             <Header user={user} setUser={setUser}/>
-            <PostsList users={users} user={user} posts={posts} restaurants={restaurants} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes}/>
+            <PostsList user={user} restaurants={restaurants} posts={posts} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes} users={users}/>
           </Route>
           <Route exact path="/users">
             <Header user={user} setUser={setUser}/>
-            <UsersList users={users} />
+            <UsersList  users={users}/>
           </Route>
           <Route exact path="/restaurants">
             <Header user={user} setUser={setUser}/>
-            <RestaurantsList handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} handleSortByTotalRating={handleSortByTotalRating} handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
+            <RestaurantsList handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
             />
           </Route>
           <Route path="/restaurants/:id">
             <Header user={user} setUser={setUser}/>
-            <SingleRestaurantProfile restaurants={restaurants}/>
+            <SingleRestaurantProfile restaurants={restaurants} />
           </Route>
           <Route path="/posts/:id">
             <Header user={user} setUser={setUser}/>
@@ -200,6 +196,7 @@ export default App;
   //post request
   // setRestaurants(restaurants.map => restaurant.total_rating = avg)
   // console.log
+
 
 
     // let ratedRest = restaurants.filter(restaurant => restaurant.id === rest_id)

@@ -31,7 +31,8 @@ function Login( { onLogin, handleUpdateUser }) {
                       console.log(json)
                       onLogin(user)
                       // setIsAuthenticated(true)
-                      history.push("/")
+                      window.location.reload(true);
+                      history.push("/restaurants")
                     })
                   }
                   else if (res.status == 500 || 401){

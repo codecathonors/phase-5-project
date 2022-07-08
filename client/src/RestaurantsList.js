@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SingleRestaurantCard from "./SingleRestaurantCard";
 import Search from "./Search";
 import RestaurantForm from "./RestaurantForm";
 
-function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortAlphabeticalByRestName, filteredRestaurants, handleSearch, search, restaurants }) {
+function RestaurantsList( { restaurants, filteredRestaurants, sortMethod, handleSortAlphabeticalByRestName, search, handleSearch, handleNewRestaurantForm }) {
     // console.log(filteredRestaurants)
-
+    // const [restaurants, setRestaurants] = useState([]);
+    // const [search, setSearch] = useState("");
     const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
     
     const sortedRestaurants = filteredRestaurants.sort((a, b) => {
@@ -21,6 +22,19 @@ function RestaurantsList( { handleNewRestaurantForm, sortMethod, handleSortAlpha
     const handleRestToggle = () => {
       setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
     }
+
+    
+   
+  
+    // const handleFunction = () => {
+    //   console.log("clicked")
+    //   handleSortAlphabeticalByRestName()
+    //   window.location.reload(true);
+    //   console.log(sortMethod)
+    // }
+    
+  
+  
 
 
 

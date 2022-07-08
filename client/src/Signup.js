@@ -43,42 +43,6 @@ function Signup( { setUser, handleUpdateUser, onLogin }) {
 })}
     
 
-
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [passwordConfirmation, setPasswordConfirmation] = useState("");
-
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     fetch("/signup", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             username,
-    //             password,
-    //             password_confirmation: passwordConfirmation,
-    //         }),
-    //     })
-    //         .then(res => {
-    //             if (res) {
-    //                 res.json()
-    //                     .then(history.push("/"))
-    //                     .then(user => {
-    //                         handleUpdateUser(user)
-    //                         setIsAuthenticated(true)
-    //                     })
-
-    //             } else {
-    //                 res.json()
-    //                     .then(json => setError(json.error))
-    //             }
-    //         })
-    // }
-
-    // const history = useHistory()
-
     const handleBack = () => {
         history.push('/login')
     }

@@ -3,14 +3,16 @@ import { useState } from "react";
 import SinglePostProfile from "./SinglePostProfile";
 
 
-function SinglePostCard( {post} ) {
+function SinglePostCard( {post, user} ) {
     // console.log(post)
     // console.log(restaurant)
     const [isLikeClicked, setIsLikeClicked] = useState(true)
     const [isDislikeClicked, setIsDislikeClicked] = useState(true)
     const [likes, setLikes] = useState(post.likes)
     const [dislikes, setDislikes] = useState(post.dislikes)
+    const [isMatched, setIsMatched] = useState(false)
 
+    console.log(user.username)
     
     //callback function in handleLike
     function handleLikeClick () {
@@ -80,10 +82,20 @@ function SinglePostCard( {post} ) {
           .then(data => console.log('remove dislike:', data))
       }
 
+      function handleDeleteShow() {
+        if (user.username == post.user.username) {
+          return <button>hey</button>
+        } else {
+          <></>
+        }
+      }
+
+      // handleDeleteShow()
+      
+
   return (
     <div className="post-grid-item">
         <h1 className="post-grid-item-username">{post.user.username}</h1>
-        {/* <img className="grid-item-image" src={post.user.profile_picture}/> */}
         <h2 className="post-grid-item-restaurant-name">{post.restaurant.restaurant_name}</h2>
         <h3 className="post-grid-item-restaurant-location">{post.restaurant.location}</h3>
         <br></br>
@@ -93,6 +105,7 @@ function SinglePostCard( {post} ) {
         <img className="post-grid-item-image" src={post.image} style={{width:100}}/>
         <p className="post-grid-item-short-review">{post.short_review}</p>
         <Link to={`/posts/${post.id}`}>View more</Link>
+        {handleDeleteShow()}
         
     </div>
 );
