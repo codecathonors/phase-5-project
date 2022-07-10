@@ -268,3 +268,10 @@ code {
 .users-profile-short-review{
   font-size: 30px;
 }
+
+.delete-post-button{
+  /* float: inline-start; */
+  background-color: #f8eae5;
+  border-radius: 5px;
+  
+}

@@ -52,6 +52,9 @@ function App() {
   const filteredRestaurants = restaurants.filter(restaurant => restaurant.restaurant_name.toLowerCase().includes(search.toLowerCase()))
   console.log(filteredRestaurants)
  
+  const handleDeletePost = (posty) => {
+    console.log(posty)
+  }
 
   const handleUpdateUser = (user) => {
     setUser(user)
@@ -81,15 +84,14 @@ function App() {
     setSortMethod("alphabetical");
   } 
 
-  //think I'll need something like this for the profile patch
-  // const onUpdatedProfile = (updatedProfile) => {
-  //   const newUpdatedProfile = user => {
-  //     if (user.id === updatedProfile.id) {
-  //       return updatedProfile
-  //     } else {return user}
-  //   }
-  //   setCurrentUser(newUpdatedProfile)
-  // }
+  const onUpdatedProfile = (updatedProfile) => {
+    const newUpdatedProfile = user => {
+      if (user.id === updatedProfile.id) {
+        return updatedProfile
+      } else {return user}
+    }
+    setUser(newUpdatedProfile)
+  }
   
 
   // if (!user) return <Login onLogin={setUser} />
@@ -100,7 +102,7 @@ function App() {
         <Switch>
           <Route exact path="/me">
             <Header user={user} setUser={setUser}/>
-            <Profile user={user}/> 
+            <Profile user={user} onUpdatedProfile={onUpdatedProfile}/> 
             {/* <h1>{user.username}'s Profile!</h1> */}
           </Route>
           <Route exact path="/login">
@@ -113,7 +115,7 @@ function App() {
           </Route>
           <Route exact path="/">
             <Header user={user} setUser={setUser}/>
-            <PostsList user={user} restaurants={restaurants} posts={posts} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes} users={users}/>
+            <PostsList handleDeletePost={handleDeletePost} user={user} restaurants={restaurants} posts={posts} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes} users={users}/>
           </Route>
           <Route exact path="/users">
             <Header user={user} setUser={setUser}/>

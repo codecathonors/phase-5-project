@@ -3,7 +3,7 @@ import { useState } from "react";
 import SinglePostCard from "./SinglePostCard";
 import PostForm from "./PostForm";
 
-function PostsList( { users, user, posts, restaurants, handleNewPostForm, sortMethod, handleSortByLikes, handleSortByDislikes }) {
+function PostsList( { handleDeletePost, users, user, posts, restaurants, handleNewPostForm, sortMethod, handleSortByLikes, handleSortByDislikes }) {
     const [isPostFormVisible, setIsPostFormVisible] = useState(false)
     // console.log(user)
 
@@ -17,7 +17,7 @@ function PostsList( { users, user, posts, restaurants, handleNewPostForm, sortMe
       } else if (sortMethod === "dislikes") {
           return b.dislikes - a.dislikes;
       }
-   }).map((post) => (<SinglePostCard key={post.id} post={post} user={user}/>))
+   }).map((post) => (<SinglePostCard handleDeletePost={handleDeletePost} key={post.id} post={post} user={user}/>))
 
 
       

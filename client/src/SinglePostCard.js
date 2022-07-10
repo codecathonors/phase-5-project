@@ -3,7 +3,7 @@ import { useState } from "react";
 import SinglePostProfile from "./SinglePostProfile";
 
 
-function SinglePostCard( {post, user} ) {
+function SinglePostCard( {post, user, handleDeletePost} ) {
     // console.log(post)
     // console.log(restaurant)
     const [isLikeClicked, setIsLikeClicked] = useState(true)
@@ -82,15 +82,24 @@ function SinglePostCard( {post, user} ) {
           .then(data => console.log('remove dislike:', data))
       }
 
+      function handleDelete() {
+        fetch(`/posts/${post.id}`, {
+          method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(handleDeletePost(post))
+          window.location.reload(true);
+      }
+
       function handleDeleteShow() {
         if (user.username == post.user.username) {
-          return <button>hey</button>
+          return <button onClick={handleDelete} className='delete-post-button'>Delete post</button>
         } else {
           <></>
         }
       }
 
-      // handleDeleteShow()
+  
       
 
   return (
