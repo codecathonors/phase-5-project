@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 // import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function Login( { onLogin, handleUpdateUser }) {
+function Login( { setCurrentUser, handleUpdateUser }) {
   // console.log(user)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -29,10 +29,10 @@ function Login( { onLogin, handleUpdateUser }) {
                 if (res.status == 201 || 200) {
                     res.json().then((json) => {
                       console.log(json)
-                      onLogin(user)
+                      setCurrentUser(user)
                       // setIsAuthenticated(true)
-                      window.location.reload(true);
-                      history.push("/restaurants")
+                      // history.push("/")
+                      window.location.replace("/");
                     })
                   }
                   else if (res.status == 500 || 401){
@@ -53,22 +53,27 @@ function Login( { onLogin, handleUpdateUser }) {
 
   return (
     <div className='login'>
+      <h1 className="login-welcome-back">Welcome back to The Restaurant Finder!</h1>
     <form onSubmit={handleSubmit}>
-        <label htmlFor="username" className="username-2">Username:  </label>
+        <label htmlFor="username" className="username-2">username:  </label>
         <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
         />
         <br></br>
-        <label className="password-2">Password:  </label>
+        <label className="password-2">password:  </label>
         <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
-        <button type="login-button" onClick={handleGoToSignUp}>Click Here to Signup</button>
+        <br></br>
+        {username && password ? <button className="button" type="submit">Login</button> : <button>NOT LOGGED IN</button>}
+        
+        <br></br>
+        <p className="login-question">Not a Restaurant user?</p>
+        <button type="login-button" onClick={handleGoToSignUp} className="login-page-button">Sign Up Here!</button>
         {error && <div className="error">{error}</div>}
     </form>
     

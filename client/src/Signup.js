@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Signup( { setUser, handleUpdateUser, onLogin }) {
+function Signup( { setUser, handleUpdateUser, setCurrentUser }) {
     const [error, setError] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -29,8 +29,8 @@ function Signup( { setUser, handleUpdateUser, onLogin }) {
             if (res.status === 201) {
                 res.json().then((user) => {
                   console.log(user)
-                  onLogin(user)
-                  history.push("/")
+                  setCurrentUser(user)
+                  window.location.replace("/");
                   
                 })
               }
@@ -49,47 +49,58 @@ function Signup( { setUser, handleUpdateUser, onLogin }) {
 
   return (
         <div className='signup'>
+            <h1 className="signup-welcome-text">Welcome to The Restaurant Finder!</h1>
+            <button onClick={handleBack} className="login-page-button"> Already a user? Log in here </button>
+            <h1 className="signup-text">Not Signed Up with The Restaurant Finder? Sign up here!</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username" className="username-1">Username:  </label>
+                <label htmlFor="username" className="username-1">username:  </label>
                 <input
                     type="text"
                     id="username"
+                    placeholder="enter username here"
                     value={username}
                     onChange={e => setUsername(e.target.value)}
                 />
                 <br></br>
-                <label htmlFor="password" className="password-1">Password:  </label>
+                <label htmlFor="password" className="password-1">password:  </label>
                 <input
                     type="password"
                     id="password"
+                    placeholder="enter password here"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
                 <br></br>
-                <label htmlFor="password_confirmation" className='confirm-pass'>Confirm Password:  </label>
+                <label htmlFor="password_confirmation" className='confirm-pass'>confirm password:  </label>
                 <input
                     type="password"
                     id="password_confirmation"
+                    placeholder="sorry, 1 more time"
                     value={password_confirmation}
                     onChange={e => setPasswordConfirmation(e.target.value)}
                 />
-                 <label htmlFor="profile_picture">Profile Picture:  </label>
+                <br></br>
+                 <label htmlFor="profile_picture">profile picture:  </label>
                 <input
                     type="text"
                     id="profile_picture"
+                    placeholder=".jpg format please"
                     value={profile_picture}
                     onChange={e => setProfilePicture(e.target.value)}
                 />
-                    <label htmlFor="profile_bio">Profile Bio:  </label>
+                <br></br>
+                    <label htmlFor="profile_bio">profile bio:  </label>
                 <input
                     type="text"
                     id="profile_bio"
                     value={profile_bio}
+                    placeholder="funny profile bio?"
                     onChange={e => setProfileBio(e.target.value)}
                 />
-                <button type="submit"> Submit </button>
                 <br></br>
-                <button onClick={handleBack} className="login-page-button"> Back to Login </button>
+                <button type="submit" className="button"> Create User </button>
+                <br></br>
+                
                 {error && <div className="error">{error.join(", ")}</div>}
             </form>
         </div>

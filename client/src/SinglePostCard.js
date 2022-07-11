@@ -12,7 +12,7 @@ function SinglePostCard( {post, user, handleDeletePost} ) {
     const [dislikes, setDislikes] = useState(post.dislikes)
     const [isMatched, setIsMatched] = useState(false)
 
-    console.log(user.username)
+    // console.log(user)
     
     //callback function in handleLike
     function handleLikeClick () {

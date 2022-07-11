@@ -46,15 +46,11 @@ function RestaurantsList( { restaurants, filteredRestaurants, sortMethod, handle
       {isRestaurantFormVisible ? <RestaurantForm handleNewRestaurantForm={handleNewRestaurantForm}/> : <></>}
       <div className="sortbtns">
         <button className="on-post-page-normal" onClick={handleSortAlphabeticalByRestName}>Sort A-Z by Restaurant Name</button>
-        {/* <button className="sort" onClick={handleSortByTotalRating}>Sort by Rating</button> */}
       </div>
       <div className="restaurant-grid-container">
           {sortedRestaurants.map((restaurant) => {
             return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
           })}
-          {/* {sortedRestaurantsRating.map((restaurant) => {
-            return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
-          })} */}
       </div>
      
     </>

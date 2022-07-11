@@ -19,7 +19,7 @@ const postArray = restaurantProfile[0].posts.map(post => <p>{post.user_rating} U
 
 
   return (
-    <div>
+    <div className="single-rest-profile">
         <h1 className="top-of-page-title">RESTAURANT PROFILE</h1>
             <h1 className="restaurant-profile-name">{restaurantProfile[0].restaurant_name}</h1>
             <img src={restaurantProfile[0].image}/>

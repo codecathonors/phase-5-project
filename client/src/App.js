@@ -18,17 +18,17 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [sortMethod, setSortMethod] = useState("rating");
-  // const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [user, setUser] = useState(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
  
   useEffect(() => {
     fetch('/me')
     .then((res) => {
       if (res.ok) {
         res.json()
-          .then((user) => {
+          .then((currentUser) => {
             // setIsAuthenticated(true);
-            setUser(user);
+            setCurrentUser(currentUser);
           });
       }
     });
@@ -50,14 +50,14 @@ function App() {
   }, []);
 
   const filteredRestaurants = restaurants.filter(restaurant => restaurant.restaurant_name.toLowerCase().includes(search.toLowerCase()))
-  console.log(filteredRestaurants)
+  // console.log(filteredRestaurants)
  
   const handleDeletePost = (posty) => {
     console.log(posty)
   }
 
-  const handleUpdateUser = (user) => {
-    setUser(user)
+  const handleUpdateUser = (currentUser) => {
+    setCurrentUser(currentUser)
   }
 
   const handleNewPostForm = (newPost) => {
@@ -90,53 +90,54 @@ function App() {
         return updatedProfile
       } else {return user}
     }
-    setUser(newUpdatedProfile)
+    setUsers(newUpdatedProfile)
   }
   
 
-  // if (!user) return <Login onLogin={setUser} />
+  if (!currentUser) return (<Login setCurrentUser={setCurrentUser}/>)
+
   
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
           <Route exact path="/me">
-            <Header user={user} setUser={setUser}/>
-            <Profile user={user} onUpdatedProfile={onUpdatedProfile}/> 
+            <Header user={currentUser} setUser={setCurrentUser}/>
+            <Profile user={currentUser}/> 
             {/* <h1>{user.username}'s Profile!</h1> */}
           </Route>
           <Route exact path="/login">
-            <Header user={user} setUser={setUser}/>
-            <Login handleUpdateUser={handleUpdateUser} user={user} onLogin={setUser}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
+            <Login handleUpdateUser={handleUpdateUser} user={currentUser} setCurrentUser={setCurrentUser}/>
           </Route>
           <Route exact path="/signup">
-            <Header user={user} setUser={setUser}/>
-            <Signup handleUpdateUser={handleUpdateUser} onLogin={setUser}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
+            <Signup handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser}/>
           </Route>
           <Route exact path="/">
-            <Header user={user} setUser={setUser}/>
-            <PostsList handleDeletePost={handleDeletePost} user={user} restaurants={restaurants} posts={posts} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes} users={users}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
+            <PostsList handleDeletePost={handleDeletePost} user={currentUser} restaurants={restaurants} posts={posts} handleNewPostForm={handleNewPostForm} sortMethod={sortMethod} handleSortByLikes={handleSortByLikes} handleSortByDislikes={handleSortByDislikes} users={users}/>
           </Route>
           <Route exact path="/users">
-            <Header user={user} setUser={setUser}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
             <UsersList  users={users}/>
           </Route>
           <Route exact path="/restaurants">
-            <Header user={user} setUser={setUser}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
             <RestaurantsList handleSortAlphabeticalByRestName={handleSortAlphabeticalByRestName} handleNewRestaurantForm={handleNewRestaurantForm} sortMethod={sortMethod} filteredRestaurants={filteredRestaurants}  handleSearch={handleSearch} search={search} restaurants={restaurants}
             />
           </Route>
           <Route path="/restaurants/:id">
-            <Header user={user} setUser={setUser}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
             <SingleRestaurantProfile restaurants={restaurants} />
           </Route>
           <Route path="/posts/:id">
-            <Header user={user} setUser={setUser}/>
-            <SinglePostProfile posts={posts}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
+            <SinglePostProfile posts={posts} />
           </Route>
           <Route path="/users/:id">
-            <Header user={user} setUser={setUser}/>
-            <SingleUserProfile users={users}/>
+            <Header user={currentUser} setUser={setCurrentUser}/>
+            <SingleUserProfile onUpdatedProfile={onUpdatedProfile} users={users} currentUser={currentUser}/>
           </Route>
         </Switch>
       </div>

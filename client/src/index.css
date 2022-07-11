@@ -1,12 +1,29 @@
 body {
-  margin: 0;
+  background: url(https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f7c9b6;
-  text-align: center;
+  margin: 0;
+
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(235, 218, 202);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(199, 153, 100);
 }
 
 code {
@@ -20,6 +37,16 @@ code {
   color: black;
 }
 
+.profile-div{
+  margin-top: 40px;
+  background-color: #83BDC0;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  background: rgba(233, 203, 175, 0.6);
+}
+
 .dislike-clicked{
   background-color: rgb(214, 125, 125);
   border-radius: 2px;
@@ -29,6 +56,12 @@ code {
 .error {
   color: red;
   text-transform: uppercase;
+}
+
+.single-post-profile {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
 .post-grid-container {
@@ -41,11 +74,11 @@ code {
 }
 
 .post-grid-item {
-  background-color: #83BDC0;
-  border: 3px solid #549BAD;
+  background: rgba(233, 203, 175, 0.6);
+  border: 3px solid #4b4029;
   padding: 10px;
   padding-top: 15px;
-  font-size: 9px;
+  font-size: 12px;
   text-align: left;
   width: 700px;
   height: auto;
@@ -54,19 +87,21 @@ code {
 }
 
 .post-grid-item-username {
-  font-size: 32px;
-  font-weight: 300;
+  font-size: 35px;
+  font-weight: 500;
   margin: 0;
+  float: right;
 }
 
 .post-grid-item-restaurant-name{
   font-weight: 500;
+  font-size: 25px;
   margin: 0;
 }
 
 .post-grid-item-restaurant-location {
   /* float: left; */
-  font-weight: 200;
+  font-weight: 400;
   font-style: italic;
   margin-top: 3px;
   margin-bottom: 0;
@@ -75,7 +110,7 @@ code {
 
 .post-grid-item-user-rating {
   margin: 0;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 12px;
   padding-bottom: 4px;
 }
@@ -89,7 +124,7 @@ code {
 }
 
 .normal {
-  background-color: #f8eae5;
+  background: rgb(212, 203, 194);
   border-radius: 5px;
 }
 
@@ -106,7 +141,7 @@ code {
 }
 
 .user-grid-item{
-  background-color: rgba(255, 255, 255, 0.8);
+  background: rgba(233, 203, 175, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 25px;
   font-size: 9px;
@@ -130,7 +165,7 @@ code {
 }
 
 .restaurant-grid-item{
-  background-color: #83BDC0;
+  background: rgba(233, 203, 175, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 25px;
   font-size: 12px;
@@ -139,8 +174,8 @@ code {
   border-radius: 10px;
 }
 .restaurant-grid-item:hover{
-  background-color: #549BAD;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background: rgba(233, 203, 175, .9);
+  border: 1px solid rgba(0, 0, 0);
   padding: 25px;
   font-size: 12px;
   text-align: center;
@@ -149,7 +184,7 @@ code {
 }
 
 .nav {
-  background-color: #83BDC0;
+  background-color: rgba(233, 203, 175, 0.9);
   color: rgb(26, 19, 19);
   display: flex;
   /* justify-content: space-between; */
@@ -190,7 +225,7 @@ code {
 } */
 
 .nav li:hover {
-  background-color: rgb(58, 153, 156);
+  background-color: #b6905d;
   height: 100%;
 }
 
@@ -238,6 +273,30 @@ code {
   padding: 10px
 }
 
+.single-rest-profile {
+  background: rgba(233, 203, 175, 0.8);
+  width: 50%;
+  height: auto;
+  margin: auto;
+  margin-top: 50px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+
+}
+
+.single-post-profile-username {
+  font-size: 35px;
+  /* float: left; */
+}
+
+.single-post-profile-rest-name {
+  /* float: right; */
+}
+
+.single-post-profile-review {
+  /* float: right; */
+}
+
 .restaurant-profile-name {
   font-size: 50px;
   letter-spacing: 5px;
@@ -273,5 +332,78 @@ code {
   /* float: inline-start; */
   background-color: #f8eae5;
   border-radius: 5px;
-  
 }
+
+.signup {
+  font-size: 30px;
+  background: rgba(233, 203, 175, 0.8);
+  width: 30%;
+  height: auto;
+  margin: auto;
+  margin-top: 50px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+
+.signup-text {
+  margin: 0;
+  font-size: 11px;
+  padding-bottom: 5px;
+}
+
+.signup-welcome-text {
+  padding-top: 20px;
+  margin: 0;
+  font-size: 25px;
+}
+
+.button {
+  background-color: #4b4029;
+  color: antiquewhite;
+  border-radius: 4px;
+}
+
+.button:hover{
+  background-color: #b1975f;
+  color: antiquewhite;
+  border-radius: 4px;
+}
+.login-page-button{
+  background-color: rgb(221, 188, 139);
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.login-page-button:hover{
+  background-color: rgb(133, 88, 22);
+  border-radius: 4px;
+}
+
+.login {
+  font-size: 30px;
+  background: rgba(233, 203, 175, 0.8);
+  width: 30%;
+  height: auto;
+  margin: auto;
+  margin-top: 50px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+
+.login-welcome-back{
+  padding-top: 15px;
+  font-size: 20px;
+}
+
+.login-question{
+  font-size: 12px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.login-page-login-button{
+  margin: 0;
+  margin-bottom: 15px;
+}
+

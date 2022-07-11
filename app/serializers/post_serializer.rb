@@ -5,6 +5,6 @@ class PostSerializer < ActiveModel::Serializer
   belongs_to :user, serializer: PostUserSerializer
 
   def short_review
-    "#{self.object.review[0..30]} . . ."
+    "#{self.object.review[0..50]} . . ."
   end
 end

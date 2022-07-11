@@ -10,11 +10,13 @@ const postProfile = posts.filter(post => post.id == id)
 // console.log(postProfile[0])
 
   return (
-    <div>
+    <div className="single-rest-profile">
         <h1 className="top-of-page-title">Full review</h1>
-        <h1>{postProfile[0].user.username}</h1>
-        <h2>{postProfile[0].restaurant.restaurant_name}</h2>
-        <p>{postProfile[0].review}</p>
+        <div className="single-post-profile">
+            <h1 className="single-post-profile-username">{postProfile[0].user.username}</h1>
+            <h2 className="single-post-profile-rest-name">{postProfile[0].restaurant.restaurant_name}</h2>
+            <p className="single-post-profile-review">{postProfile[0].review}</p>
+        </div>
     </div>
 );
 }
