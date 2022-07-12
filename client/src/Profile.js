@@ -1,8 +1,8 @@
 // import { useHistory } from "react-router-dom";
 import React, { useState } from 'react';
-// import EditProfile from './EditProfile';
+import EditProfile from './EditProfile';
 
-function Profile( { user }) {
+function Profile( { user, onUpdatedProfile }) {
     // const [isDisplayed, setIsDisplayed] = useState(false)
     const [isEditButtonVisible, setIsEditButtonVisible] = useState(false)
     // const [username, setUsername] = useState(user.username);
@@ -57,8 +57,9 @@ function Profile( { user }) {
         <h1 className="top-of-page-title-users">{user.username}'s profile</h1>
         <img className="profile-image" src={user.profile_picture}/>
         <p className="users-profile-bio">{user.profile_bio ? user.profile_bio: "this user doesn't have a bio set up"}</p>
-        {/* <button onClick={handleClick}>{isEditButtonVisible ? "Nvm" : "Edit Profile"}</button>
-        {isEditButtonVisible ? <EditProfile user={user} onUpdatedProfile={(updatedProfile) => {setIsEditButtonVisible(false); return onUpdatedProfile(updatedProfile);}} /> : <></>} */}
+        <button onClick={handleClick}>{isEditButtonVisible ? "Nvm" : "Edit Profile"}</button>
+        {isEditButtonVisible ? <EditProfile user={user} onUpdatedProfile={(updatedProfile) => {setIsEditButtonVisible(false); return onUpdatedProfile(updatedProfile);}} /> : <></>}
+
         {/* {isEditButtonVisible ? <EditProfile user={userProfile[0]} onUpdatedProfile={(updatedProfile) => {setIsEditButtonVisible(false); return onUpdatedProfile(updatedProfile);}} /> : <></>} */}
         <p className="users-profile-short-review">Previous reviews: {user.posts ? user.posts.map(post => post.short_review) : "User hasn't made any posts yet"}</p>
     </div>

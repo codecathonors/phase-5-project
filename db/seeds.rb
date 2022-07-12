@@ -10,6 +10,7 @@ puts "Starting seed"
 end
 
 cat = User.create(username: "catho", password: "password1", profile_picture: "https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg", profile_bio: "heeeeeeeeeeeeeeeeeeeeeeeey")
+romy = User.create(username: "romy", password: "password1", profile_picture: "https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg", profile_bio: "testest")
 
 #Restaurant seed data
 20.times do

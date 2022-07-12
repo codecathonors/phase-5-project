@@ -1,4 +1,5 @@
 class RestaurantPostSerializer < ActiveModel::Serializer
+  # skip_before_action :authorize
   attributes :rating, :user_rating
   # belongs_to :restaurant
   belongs_to :post

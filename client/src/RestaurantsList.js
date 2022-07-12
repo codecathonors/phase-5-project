@@ -1,42 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SingleRestaurantCard from "./SingleRestaurantCard";
 import Search from "./Search";
 import RestaurantForm from "./RestaurantForm";
 
-function RestaurantsList( { restaurants, filteredRestaurants, sortMethod, handleSortAlphabeticalByRestName, search, handleSearch, handleNewRestaurantForm }) {
-    // console.log(filteredRestaurants)
-    // const [restaurants, setRestaurants] = useState([]);
-    // const [search, setSearch] = useState("");
-    const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
-    
-    const sortedRestaurants = filteredRestaurants.sort((a, b) => {
-      if (sortMethod === "alphabetical") {
-          return a.restaurant_name.localeCompare(b.restaurant_name);
-      } 
-    }).map((restaurant) => (
-      <SingleRestaurantCard 
-        key={restaurant.id}
-        restaurant={restaurant} />
+function RestaurantsList( { filteredRestaurants, sortMethod, handleSortAlphabeticalByRestName, search, handleSearch, handleNewRestaurantForm }) {
+  const [isRestaurantFormVisible, setIsRestaurantFormVisible] = useState(false)
+
+  //sort restaurant alphabetically
+  const sortedRestaurants = filteredRestaurants.sort((a, b) => {
+    if (sortMethod === "alphabetical") {
+      return a.restaurant_name.localeCompare(b.restaurant_name);
+    } 
+  }).map((restaurant) => (
+    <SingleRestaurantCard 
+      key={restaurant.id}
+      restaurant={restaurant} />
     ))
         
-    const handleRestToggle = () => {
-      setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
-    }
-
-    
-   
-  
-    // const handleFunction = () => {
-    //   console.log("clicked")
-    //   handleSortAlphabeticalByRestName()
-    //   window.location.reload(true);
-    //   console.log(sortMethod)
-    // }
-    
-  
-  
-
-
+  //toggle for adding new restaurant
+  const handleRestToggle = () => {
+    setIsRestaurantFormVisible(isRestaurantFormVisible => !isRestaurantFormVisible)
+  }
 
   return (
     <>
@@ -58,39 +42,3 @@ function RestaurantsList( { restaurants, filteredRestaurants, sortMethod, handle
 }
 
 export default RestaurantsList;
-
-
-    // const sortedRestaurants = filteredRestaurants.sort((a, b) => {
-    //   if (sortMethod === "alphabetical") {
-    //       return a.restaurant_name.localeCompare(b.restaurant_name);
-    //   } 
-    // }).map((restaurant) => (
-    //   <SingleRestaurantCard 
-    //     key={restaurant.id}
-    //     restaurant={restaurant} />
-    // ))
-
-    // const sortedRestaurantsRating = avg_rating.sort((a,b) => {
-    //   if (sortMethod === "rating") {
-    //     return b - a;
-    //   }
-    // }).map((restaurant) => (
-    //   <SingleRestaurantCard 
-    //     key={restaurant.id}
-    //     restaurant={restaurant} />
-    // ))
-
-    // const handleFilter = () => 
-    //   {if (sortMethod === "alphabetical")
-    //     return filteredRestaurants.sort((a,b) => {
-    //       return a.restaurant_name.localeCompare(b.restaurant_name)
-    //     }) 
-    //   else if (sortMethod === "rating")
-    //     return avg_rating.sort((a,b) => {
-    //       return b - a
-    //     })
-    //     // .map((restaurant) => (
-    //       //   <SingleRestaurantCard 
-    //       //     key={restaurant.id}
-    //       //     restaurant={restaurant} />
-    // }

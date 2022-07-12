@@ -21,6 +21,9 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [currentUser, setCurrentUser] = useState(null)
  
+  //if currentUser, then render these fetches, if !currentUser, <Login >
+  //return value, if currentUser run this function w fetches, if no current user, render login page
+  
   useEffect(() => {
     fetch('/me')
     .then((res) => {
@@ -32,6 +35,7 @@ function App() {
           });
       }
     });
+    //wait till auth successful then separate
     fetch("/posts")
       .then((r) => r.json())
       .then((posts) => setPosts(posts));
@@ -96,16 +100,17 @@ function App() {
 
   if (!currentUser) return (<Login setCurrentUser={setCurrentUser}/>)
 
-  
+  //above return statement isn't working
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
           <Route exact path="/me">
             <Header user={currentUser} setUser={setCurrentUser}/>
-            <Profile user={currentUser}/> 
+            <Profile user={currentUser} onUpdatedProfile={onUpdatedProfile}/> 
             {/* <h1>{user.username}'s Profile!</h1> */}
           </Route>
+          {/* current user doesn't exist, render login, try a conditional statement here */}
           <Route exact path="/login">
             <Header user={currentUser} setUser={setCurrentUser}/>
             <Login handleUpdateUser={handleUpdateUser} user={currentUser} setCurrentUser={setCurrentUser}/>

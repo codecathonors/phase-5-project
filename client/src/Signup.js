@@ -44,7 +44,7 @@ function Signup( { setUser, handleUpdateUser, setCurrentUser }) {
     
 
     const handleBack = () => {
-        history.push('/login')
+        window.location.replace("/login");
     }
 
   return (

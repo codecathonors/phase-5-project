@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-skip_before_action :authorize, only: [:create, :update]
+skip_before_action :authorize, only: :create
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     def index
@@ -32,7 +32,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation, :profile_bio, :profile_picture)
+        params.permit(:username, :password, :password_confirmation, :profile_bio, :profile_picture, :id)
     end
 
     def render_not_found

@@ -48,7 +48,7 @@ function Login( { setCurrentUser, handleUpdateUser }) {
 
     function handleGoToSignUp(e) {
         e.preventDefault()
-        history.push("/signup")
+        window.location.replace("/signup");
     }
 
   return (

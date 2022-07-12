@@ -1,4 +1,5 @@
 class UserPostSerializer < ActiveModel::Serializer
+  
   attributes :restaurant_review, :short_review, :rating, :likes, :dislikes
 
   def short_review

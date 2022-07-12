@@ -1,13 +1,12 @@
-// import { useHistory } from "react-router-dom";
-// import React from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 function SinglePostProfile( { posts }) {
+    
     const { id } = useParams();
-// console.log(posts)
 
-const postProfile = posts.filter(post => post.id == id)
-// console.log(postProfile[0])
+    const postProfile = posts.filter(post => post.id == id)
+
 
   return (
     <div className="single-rest-profile">
@@ -18,7 +17,7 @@ const postProfile = posts.filter(post => post.id == id)
             <p className="single-post-profile-review">{postProfile[0].review}</p>
         </div>
     </div>
-);
+    );
 }
 
 export default SinglePostProfile;
