@@ -33,6 +33,8 @@ function EditProfile ( { user, onUpdatedProfile }) {
             .then(res => res.json())
             .then(updatedProfile => onUpdatedProfile(updatedProfile))
 
+            window.location.reload(true);
+
             setUsername(user.username);
             setProfilePicture(user.profile_picture);
             setProfileBio(user.profile_bio);
