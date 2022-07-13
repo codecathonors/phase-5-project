@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 function SingleRestaurantCard( {restaurant} ) {
 
   const avg = restaurant.posts.map(post => post.rating).reduce((sum, curr) => sum + Number(curr), 0) / restaurant.posts.length

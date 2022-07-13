@@ -1,30 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
-// import { Alert } from 'react-bootstrap';
 
-function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
+function PostForm({ restaurants, nowUser, users, handleNewPostForm }) {
     const [restaurantName, setRestaurantName] = useState("")
-    const [restId, setRestId] = useState("")
     const [rating, setRating] = useState(0)
     const [image, setImage] = useState("")
     const [review, setReview] = useState("")
     const [postFormError, setPostFormError] = useState("");
 
     const history = useHistory()
-    // console.log(nowUser)
-
+  
+    //grabs user input and sets to restaurant name
     function handleRestaurantSearch(e) {
         setRestaurantName(e.target.value)
-        // setRestId(e.target)
-        // console.log(e.target.value)
     }
+    //finds restaurant based on user inputed name
+    const locatedRestaurant = restaurants.find((restaurant) => restaurant.restaurant_name === restaurantName)
 
-    const locatedRestaurant = restaurants.find((restaurant) => restaurant.restaurant_name == restaurantName)
-    // console.log(locatedRestaurant)
-
-    const currentUser = users.find((user) => user.username == nowUser.username)
-    console.log(nowUser)
-    console.log(users)
+    //variable holding current user
+    const currentUser = users.find((user) => user.username === nowUser.username)
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -37,29 +31,27 @@ function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
             },
             body: JSON.stringify({
                 user_id: currentUser.id,
-                restaurant_id: locatedRestaurant.id, //maybe locatedRestaurant.id?
+                restaurant_id: locatedRestaurant.id,
                 rating: rating,
                 image: image,
                 review: review
             })
         })
         .then(res => {
-            console.log(res)
+            console.log(res.status)
             if (res.status === 201) {
               res.json().then((json) => {
-                console.log(json);
-                // setPostFormError(json.errors);
+                handleNewPostForm(json);
                 window.location.reload(true);
               })
-            } //above is doing what else should be doing
+            } 
             else if (res.status === 200) {
               res.json().then((json) => {
                 console.log(json.errors);
-                //maybe handleNewRestaurantForm
                 setPostFormError(json.errors);
-              })
+                })
             }
-          })
+        })
 
         setRestaurantName(restaurantName)
         setRating(rating)
@@ -67,13 +59,12 @@ function PostForm({ handleNewPostForm, restaurants, nowUser, users }) {
         setReview(review)
     }
 
-    // console.log(user)
+    //redirect to add new restaurant if it doesn't exist
     function handleClick(e) {
         e.preventDefault()
         history.push("/restaurants")
     }
 
- 
     return (
         <div>
             <form onSubmit={handleSubmit} className="form-container">

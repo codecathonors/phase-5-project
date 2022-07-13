@@ -15,7 +15,7 @@ function RestaurantsList( { filteredRestaurants, sortMethod, handleSortAlphabeti
     <SingleRestaurantCard 
       key={restaurant.id}
       restaurant={restaurant} />
-    ))
+  ))
         
   //toggle for adding new restaurant
   const handleRestToggle = () => {
@@ -36,7 +36,6 @@ function RestaurantsList( { filteredRestaurants, sortMethod, handleSortAlphabeti
             return <div style={{display: "flex", justifyContent: "center"}}>{restaurant}</div>
           })}
       </div>
-     
     </>
   );
 }

@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
 
-
 function EditProfile ( { user, onUpdatedProfile }) {
     const [username, setUsername] = useState(user.username);
     const [profilePicture, setProfilePicture] = useState(user.profile_picture);
-    const [profileBio, setProfileBio] = useState(user.profile_bio)
-    // const [editProfile, setEditProfile] = useState("");
-
-    console.log(user)
+    const [profileBio, setProfileBio] = useState(user.profile_bio);
+    const [profileEditError, setProfileEditError] = useState([]);
 
     const handleProfileEdit = (e) => {
         e.preventDefault()
-        // const updatedProfile = {
-        //     username: username,
-        //     // password: user.password,
-        //     profile_picture: profilePicture,
-        //     profile_bio: profileBio
-        // }
-
+    
         fetch(`users/${user.id}`, {
             method: 'PATCH',
             headers: {
@@ -30,24 +21,24 @@ function EditProfile ( { user, onUpdatedProfile }) {
                 profile_bio: profileBio
             }),
         })
-            .then(res => res.json())
-            .then(updatedProfile => onUpdatedProfile(updatedProfile))
-
-            window.location.reload(true);
-
-            setUsername(user.username);
-            setProfilePicture(user.profile_picture);
-            setProfileBio(user.profile_bio);
-            }
-
+        .then(res => {
+            if (res.status === 201 || 202) {
+                res.json().then((json) => {
+                onUpdatedProfile(json)
+                // ();
+                })
+                window.location.replace("/")
+            } else if (res.status === 200){
+                res.json().then((json) => {
+                    console.log(json);
+                    setProfileEditError(json.errors);
+                })
+            }})
         
-        
-       
-    
-        
-    // function refreshPage() {
-    //     window.location.reload(false);
-    // }
+        setUsername(user.username);
+        setProfilePicture(user.profile_picture);
+        setProfileBio(user.profile_bio);
+    }
 
     return (
         <div>
@@ -56,6 +47,7 @@ function EditProfile ( { user, onUpdatedProfile }) {
                 <label>Profile Bio: </label><input type="text" onChange={e => setProfileBio(e.target.value)} value={profileBio}></input>
                 <label>Profile Picture: </label><input type="text" onChange={e => setProfilePicture(e.target.value)} value={profilePicture}></input>
                 <button type="completededit">Completed Profile Edit</button>
+                {profileEditError && <div className="error">{profileEditError.join(", ")}</div>}
             </form>
         </div>
     )

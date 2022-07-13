@@ -4,23 +4,23 @@ import SinglePostCard from "./SinglePostCard";
 import PostForm from "./PostForm";
 
 function PostsList( { handleDeletePost, users, user, posts, restaurants, handleNewPostForm, sortMethod, handleSortByLikes, handleSortByDislikes }) {
-    const [isPostFormVisible, setIsPostFormVisible] = useState(false)
-    // console.log(user)
+  const [isPostFormVisible, setIsPostFormVisible] = useState(false)
 
-    function handleToggle() {
-      setIsPostFormVisible(isPostFormVisible => !isPostFormVisible)
+  function handleToggle() {
+    setIsPostFormVisible(isPostFormVisible => !isPostFormVisible)
+  }
+
+  //sort by likes / dislikes
+  const sortedPosts = posts.sort((a, b) => {
+    if (sortMethod === "likes") {
+      return b.likes - a.likes;
+    } else if (sortMethod === "dislikes") {
+      return b.dislikes - a.dislikes;
     }
-
-    const sortedPosts = posts.sort((a, b) => {
-      if (sortMethod === "likes") {
-          return b.likes - a.likes;
-      } else if (sortMethod === "dislikes") {
-          return b.dislikes - a.dislikes;
-      }
-   }).map((post) => (<SinglePostCard handleDeletePost={handleDeletePost} key={post.id} post={post} user={user}/>))
-
-
-      
+  })
+  .map((post) => (
+  <SinglePostCard handleDeletePost={handleDeletePost} key={post.id} post={post} user={user}/>
+  ))
 
   return (
     <div>
@@ -32,13 +32,12 @@ function PostsList( { handleDeletePost, users, user, posts, restaurants, handleN
         <button className="on-post-page-normal" onClick={handleSortByDislikes}>Sort by Dislikes</button>
       </div>
       <div className="post-grid-container">
-        {/* {posts.map(post => <SinglePostCard post={post} key={post.id}/>)} */}
         {sortedPosts.map((post) => {
-            return <div style={{display: "flex", justifyContent: "center"}}>{post}</div>
-          })}
-        </div>
+          return <div style={{display: "flex", justifyContent: "center"}}>{post}</div>
+        })}
+      </div>
     </div>
-);
+  );
 }
 
 export default PostsList;

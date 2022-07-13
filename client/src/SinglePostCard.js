@@ -1,106 +1,96 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import SinglePostProfile from "./SinglePostProfile";
-
 
 function SinglePostCard( {post, user, handleDeletePost} ) {
-    // console.log(post)
-    // console.log(restaurant)
-    const [isLikeClicked, setIsLikeClicked] = useState(true)
-    const [isDislikeClicked, setIsDislikeClicked] = useState(true)
-    const [likes, setLikes] = useState(post.likes)
-    const [dislikes, setDislikes] = useState(post.dislikes)
-    const [isMatched, setIsMatched] = useState(false)
+  const [isLikeClicked, setIsLikeClicked] = useState(true)
+  const [isDislikeClicked, setIsDislikeClicked] = useState(true)
+  const [likes, setLikes] = useState(post.likes)
+  const [dislikes, setDislikes] = useState(post.dislikes)
+  const [isMatched, setIsMatched] = useState(false)
 
-    // console.log(user)
-    
-    //callback function in handleLike
-    function handleLikeClick () {
-    setIsLikeClicked(isLikeClicked => !isLikeClicked)}
+  //callback function in handleLike
+  function handleLikeClick () {
+    setIsLikeClicked(isLikeClicked => !isLikeClicked)
+  }
 
-    //PATCH request to update like state
-    function handleLike () {
-      handleLikeClick()
+  //PATCH request to update like state
+  function handleLike () {
+    handleLikeClick()
 
-      isLikeClicked ? (
-        fetch(`/posts/${post.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify(
-            {likes: post.likes += 1}
-            ),
-          })
-          .then(r => r.json())
-          .then(data => console.log('add like:', data)))
-        :
-        fetch(`/posts/${post.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify(
-            {likes: post.likes -= 1}
-            ),
-          })
-          .then(r => r.json())
-          .then(data => console.log('remove like:', data))
-    }
+    isLikeClicked ? (
+      fetch(`/posts/${post.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(
+          {likes: post.likes += 1}),
+      })
+      .then(r => r.json())
+      .then(data => console.log('add like:', data)))
+    :
+      fetch(`/posts/${post.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(
+          {likes: post.likes -= 1}),
+      })
+      .then(r => r.json())
+      .then(data => console.log('remove like:', data))
+  }
 
-    //callback function in handleDislike
-    function handleDislikeClick () {
-      setIsDislikeClicked(isDislikeClicked => !isDislikeClicked)
-    }
-    //PATCH request to update dislike state
-    function handleDislike () {
-      handleDislikeClick()
+  //callback function in handleDislike
+  function handleDislikeClick () {
+    setIsDislikeClicked(isDislikeClicked => !isDislikeClicked)
+  }
+
+  //PATCH request to update dislike state
+  function handleDislike () {
+    handleDislikeClick()
   
-      isDislikeClicked ? (
-        fetch(`/posts/${post.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify(
-            {dislikes: post.dislikes += 1}
-            ),
-          })
-          .then(r => r.json())
-          .then(data => console.log('add dislike:', data)))
-        :
-        fetch(`/posts/${post.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify(
-            {dislikes: post.dislikes -= 1}
-            ),
-          })
-          .then(r => r.json())
-          .then(data => console.log('remove dislike:', data))
-      }
+    isDislikeClicked ? (
+      fetch(`/posts/${post.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(
+          {dislikes: post.dislikes += 1}),
+      })
+      .then(r => r.json())
+      .then(data => console.log('add dislike:', data)))
+    :
+      fetch(`/posts/${post.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(
+          {dislikes: post.dislikes -= 1}),
+      })
+      .then(r => r.json())
+      .then(data => console.log('remove dislike:', data))
+  }
 
-      function handleDelete() {
-        fetch(`/posts/${post.id}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
-          .then(handleDeletePost(post))
-          window.location.reload(true);
-      }
+  //delete fetch that calls handleDeleteShow
+  function handleDelete() {
+    fetch(`/posts/${post.id}`, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(handleDeletePost(post))
+    window.location.reload(true);
+  }
 
-      function handleDeleteShow() {
-        if (user.username == post.user.username) {
-          return <button onClick={handleDelete} className='delete-post-button'>Delete post</button>
-        } else {
-          <></>
-        }
-      }
-
-  
-      
+  //only shows delete button if post's user_id == logged in user's id
+  function handleDeleteShow() {
+    if (user.username == post.user.username) {
+      return <button onClick={handleDelete} className='delete-post-button'>Delete post</button>
+    } else {
+      <></>
+  }}
 
   return (
     <div className="post-grid-item">
@@ -115,9 +105,8 @@ function SinglePostCard( {post, user, handleDeletePost} ) {
         <p className="post-grid-item-short-review">{post.short_review}</p>
         <Link to={`/posts/${post.id}`}>View more</Link>
         {handleDeleteShow()}
-        
     </div>
-);
+  );
 }
 
 export default SinglePostCard;

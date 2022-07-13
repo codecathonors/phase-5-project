@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
-function Header( {user, setUser}) {
+function Header( { setUser }) {
 
     let history = useHistory()
 
@@ -15,12 +15,10 @@ function Header( {user, setUser}) {
                 }
             })
         history.push('/login')
-        // console.log(user)
     }
-    return(
-        <>
-            {/* <div className="header"> */}
 
+    return (
+        <>
             <nav className="nav">
                 <NavLink to="/" className="site-title">The Restaurant Finder</NavLink>
                 <ul>
@@ -30,9 +28,7 @@ function Header( {user, setUser}) {
                     <li><NavLink to="/me">Profile</NavLink></li>
                     <li><NavLink to="/login" onClick={handleLogout}>Logout</NavLink></li>
                 </ul>
-                {/* <button className="nav-right">Logout</button> */}
             </nav>
-            {/* </div> */}
         </>
     )
 }
