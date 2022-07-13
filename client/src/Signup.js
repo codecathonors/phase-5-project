@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Signup( { setUser, handleUpdateUser, setCurrentUser }) {
+function Signup( { setCurrentUser }) {
     const [error, setError] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -31,76 +31,73 @@ function Signup( { setUser, handleUpdateUser, setCurrentUser }) {
                   console.log(user)
                   setCurrentUser(user)
                   window.location.replace("/");
-                  
                 })
-              }
-              else if (res.status === 200){
+            } else if (res.status === 200){
                 res.json().then((json) => {
                   console.log(json);
                   setError(json.errors);
                 })
-              }
-})}
+            }
+        }
+    )}
     
-
     const handleBack = () => {
         window.location.replace("/login");
     }
 
-  return (
+    return (
         <div className='signup'>
             <h1 className="signup-welcome-text">Welcome to The Restaurant Finder!</h1>
             <button onClick={handleBack} className="login-page-button"> Already a user? Log in here </button>
             <h1 className="signup-text">Not Signed Up with The Restaurant Finder? Sign up here!</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username" className="username-1">username:  </label>
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="enter username here"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                />
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="enter username here"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                    />
                 <br></br>
                 <label htmlFor="password" className="password-1">password:  </label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="enter password here"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="enter password here"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
                 <br></br>
                 <label htmlFor="password_confirmation" className='confirm-pass'>confirm password:  </label>
-                <input
-                    type="password"
-                    id="password_confirmation"
-                    placeholder="sorry, 1 more time"
-                    value={password_confirmation}
-                    onChange={e => setPasswordConfirmation(e.target.value)}
-                />
+                    <input
+                        type="password"
+                        id="password_confirmation"
+                        placeholder="sorry, 1 more time"
+                        value={password_confirmation}
+                        onChange={e => setPasswordConfirmation(e.target.value)}
+                    />
                 <br></br>
-                 <label htmlFor="profile_picture">profile picture:  </label>
-                <input
-                    type="text"
-                    id="profile_picture"
-                    placeholder=".jpg format please"
-                    value={profile_picture}
-                    onChange={e => setProfilePicture(e.target.value)}
-                />
+                <label htmlFor="profile_picture">profile picture:  </label>
+                    <input
+                        type="text"
+                        id="profile_picture"
+                        placeholder=".jpg format please"
+                        value={profile_picture}
+                        onChange={e => setProfilePicture(e.target.value)}
+                    />
                 <br></br>
-                    <label htmlFor="profile_bio">profile bio:  </label>
-                <input
-                    type="text"
-                    id="profile_bio"
-                    value={profile_bio}
-                    placeholder="funny profile bio?"
-                    onChange={e => setProfileBio(e.target.value)}
-                />
+                <label htmlFor="profile_bio">profile bio:  </label>
+                    <input
+                        type="text"
+                        id="profile_bio"
+                        value={profile_bio}
+                        placeholder="funny profile bio?"
+                        onChange={e => setProfileBio(e.target.value)}
+                    />
                 <br></br>
                 <button type="submit" className="button"> Create User </button>
                 <br></br>
-                
                 {error && <div className="error">{error.join(", ")}</div>}
             </form>
         </div>

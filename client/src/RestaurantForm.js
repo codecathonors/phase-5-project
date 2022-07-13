@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function RestaurantForm({ handleNewRestaurantForm }) {
+function RestaurantForm( { handleNewRestaurantForm } ) {
     const [addRestaurantName, setAddRestaurantName] = useState("")
     const [category, setCategory] = useState("")
     const [image, setImage] = useState("")
@@ -24,24 +24,20 @@ function RestaurantForm({ handleNewRestaurantForm }) {
                 location: location
             })
         })
-            // .then(r => r.json())
-            // .then(data => handleNewRestaurantForm(data))
-            .then(res => {
-                console.log(res.status)
-                if (res.status == 201) {
-                  res.json().then((json) => {
-                    console.log(json)
-                    // setRestaurantPostError(json.errors);
+        .then(res => {
+            console.log(res.status)
+            if (res.status === 201) {
+                res.json().then((json) => {
+                    handleNewRestaurantForm(json)
                     window.location.reload(true);
-                  })
-                }
-                else if (res.status == 200){
-                  res.json().then((json) => {
+                })
+            } else if (res.status === 200){
+                res.json().then((json) => {
                     console.log(json.errors);
                     setRestaurantPostError(json.errors);
-                  })
-                }
-              })
+                })
+            }
+        })
 
         setAddRestaurantName(addRestaurantName)
         setCategory(category)
@@ -62,13 +58,11 @@ function RestaurantForm({ handleNewRestaurantForm }) {
                 </label>
                 <br></br>
                 <label>Image:
-                    <input type="text" onChange={e => setImage(e.target.value)} value={image}>
-                    </input>
+                    <input type="text" onChange={e => setImage(e.target.value)} value={image}></input>
                 </label>
                 <br></br>
                 <label>Location:
-                    <input type="text" onChange={e => setLocation(e.target.value)} value={location}>
-                    </input>
+                    <input type="text" onChange={e => setLocation(e.target.value)} value={location}></input>
                 </label>
                 <br></br>
                 <button className="normal">Add Restaurant!</button>
