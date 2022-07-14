@@ -240,6 +240,7 @@ code {
   padding: 0;
   margin: auto;
   font-weight: 300;
+  letter-spacing: 5px;
   /* float: left; */
 }
 
@@ -282,6 +283,16 @@ code {
   padding-bottom: 20px;
   border-radius: 10px;
 
+}
+
+.single-post-profile-image{
+  height: 300px;
+  width: auto;
+}
+
+.restaurant-profile-picture {
+  height: 300px;
+  width: auto;
 }
 
 .single-post-profile-username {

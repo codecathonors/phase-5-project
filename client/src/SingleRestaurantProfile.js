@@ -15,7 +15,7 @@ function SingleRestaurantProfile( { restaurants }) {
     <div className="single-rest-profile">
         <h1 className="top-of-page-title">RESTAURANT PROFILE</h1>
         <h1 className="restaurant-profile-name">{restaurantProfile[0].restaurant_name}</h1>
-        <img src={restaurantProfile[0].image} alt="restaurant profile"/>
+        <img className="restaurant-profile-picture" src={restaurantProfile[0].image} alt="restaurant profile"/>
         <h3 className="restaurant-profile-location">{restaurantProfile[0].location}</h3>
         <h2>{restaurantProfile[0].restaurant_name}'s rated a {avg_rating}!</h2>
         <div>
