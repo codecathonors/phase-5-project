@@ -7,6 +7,7 @@ function SinglePostProfile( { posts }) {
 
     const postProfile = posts.filter(post => post.id == id)
 
+    console.log(postProfile)
 
   return (
     <div className="single-rest-profile">
@@ -15,6 +16,7 @@ function SinglePostProfile( { posts }) {
             <h1 className="single-post-profile-username">{postProfile[0].user.username}</h1>
             <h2 className="single-post-profile-rest-name">{postProfile[0].restaurant.restaurant_name}</h2>
             <p className="single-post-profile-review">{postProfile[0].review}</p>
+            <img className="single-post-profile-image" alt="restaurant" src={postProfile[0].image} onerror="this.style.display='none'"/>
         </div>
     </div>
     );
