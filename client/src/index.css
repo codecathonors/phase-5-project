@@ -11,7 +11,6 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   margin: 0;
-
 }
 
 ::-webkit-scrollbar {
@@ -55,6 +54,7 @@ code {
 
 .error {
   color: red;
+  font-weight: bold;
   text-transform: uppercase;
 }
 
@@ -100,12 +100,10 @@ code {
 }
 
 .post-grid-item-restaurant-location {
-  /* float: left; */
   font-weight: 400;
   font-style: italic;
   margin-top: 3px;
   margin-bottom: 0;
-  /* margin: 0; */
 }
 
 .post-grid-item-user-rating {
@@ -128,11 +126,9 @@ code {
   border-radius: 5px;
 }
 
-
 .user-grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
-  /* background-color: #2196F3; */
   column-gap: 50px;
   row-gap: 20px;
   padding: 10px;
@@ -152,10 +148,6 @@ code {
 
 .restaurant-grid-container{
   display: grid;
-  /* grid-auto-flow: row; */
-  /* grid-template-columns: auto auto auto auto auto auto auto; */
-  /* background-color: #2196F3; */
-  /* column-gap: 50px; */
   width: 300px;
   height: auto;
   row-gap: 20px;
@@ -171,8 +163,12 @@ code {
   font-size: 12px;
   text-align: center;
   margin: auto;
+  height: auto;
+  width: auto;
   border-radius: 10px;
+  align-items: stretch;
 }
+
 .restaurant-grid-item:hover{
   background: rgba(233, 203, 175, .9);
   border: 1px solid rgba(0, 0, 0);
@@ -187,7 +183,6 @@ code {
   background-color: rgba(233, 203, 175, 0.9);
   color: rgb(26, 19, 19);
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   gap: 3rem;
   padding: 0 1rem;
@@ -197,7 +192,6 @@ code {
 .site-title {
   font-size: 30px;
   letter-spacing: 4px;
-  /* text-decoration: double; */
 }
 
 .nav ul{
@@ -220,10 +214,6 @@ code {
   padding-right: 40px;
 }
 
-/* .nav li.active {
-  background-color: #555;
-} */
-
 .nav li:hover {
   background-color: #b6905d;
   height: 100%;
@@ -231,8 +221,6 @@ code {
 
 .nav-right {
   float: right;
-  /* width: 100%; */
-  /* padding-right: 100px */
 }
 
 .top-of-page-title{
@@ -241,7 +229,6 @@ code {
   margin: auto;
   font-weight: 300;
   letter-spacing: 5px;
-  /* float: left; */
 }
 
 .top-of-page-title-users{
@@ -255,14 +242,13 @@ code {
 .on-post-page-normal{
   float: inline-end;
   margin: 10px;
-  background-color: #f8eae5;
+  background-color: rgb(212, 203, 194);
   border-radius: 5px;
 }
 
 .profile-image {
   height: 300px;
   width: auto;
-  /* float: left; */
   margin: auto;
   padding-left: 10px;
 }
@@ -282,7 +268,6 @@ code {
   margin-top: 50px;
   padding-bottom: 20px;
   border-radius: 10px;
-
 }
 
 .single-post-profile-image{
@@ -297,22 +282,14 @@ code {
 
 .single-post-profile-username {
   font-size: 35px;
-  /* float: left; */
-}
-
-.single-post-profile-rest-name {
-  /* float: right; */
-}
-
-.single-post-profile-review {
-  /* float: right; */
 }
 
 .restaurant-profile-name {
   font-size: 50px;
   letter-spacing: 5px;
-  font-weight: 200;
+  font-weight: 300;
   font-style: italic;
+  color: #4b4029;
 }
 
 .restaurant-profile-location {
@@ -321,13 +298,31 @@ code {
   margin-bottom: 0;
 }
 
+.restaurant-profile-rating-string{
+  color: #382c1d;
+}
+
 .restaurant-profile-category{
   font-weight: 100;
   margin-top: 5px;
+  font-size: 15px;
 }
 
 .restaurant-profile-user-ratings {
-  font-size: 15px;
+  font-size: 18px;
+}
+
+.restaurant-profile-ratings-div{
+  background-color: #f5dbc2;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  font-family: monospace;
 }
 
 .users-profile-bio {
@@ -340,8 +335,7 @@ code {
 }
 
 .delete-post-button{
-  /* float: inline-start; */
-  background-color: #f8eae5;
+  background-color: rgb(212, 203, 194);
   border-radius: 5px;
 }
 
@@ -379,6 +373,7 @@ code {
   color: antiquewhite;
   border-radius: 4px;
 }
+
 .login-page-button{
   background-color: rgb(221, 188, 139);
   border-radius: 4px;
@@ -418,3 +413,29 @@ code {
   margin-bottom: 15px;
 }
 
+.form-container {
+  background-color: rgba(233, 203, 175, 0.6);
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  padding-top: 1px;
+}
+
+.sortbtns {
+  padding: 20px;
+} 
+
+.sort-button-post-1 {
+  width: 200px;
+  margin-right: 15px;
+  border-radius: 3px;
+  background-color: rgb(212, 203, 194);
+}
+
+.sort-button-post {
+  width: 200px;
+  border-radius: 5px;
+  background-color: rgb(212, 203, 194);
+}

@@ -47,7 +47,7 @@ function App() {
     console.log(posty)
   }
 
-  //HELP HELP HELP HELP GHELP
+  //setting current user, passed to login and signup
   const handleUpdateUser = (currentUser) => {
     setCurrentUser(currentUser)
   }

@@ -28,8 +28,8 @@ function PostsList( { handleDeletePost, users, user, posts, restaurants, handleN
       <button onClick={handleToggle} className="on-post-page-normal">{isPostFormVisible ? "collapse" : "add a post!"} </button>
       {isPostFormVisible ? <PostForm users={users} nowUser={user} restaurants={restaurants} handleNewPostForm={handleNewPostForm} /> : <></>}
       <div className="sortbtns">
-        <button className="on-post-page-normal" onClick={handleSortByLikes}>Sort by Likes</button>
-        <button className="on-post-page-normal" onClick={handleSortByDislikes}>Sort by Dislikes</button>
+        <button className="sort-button-post-1" onClick={handleSortByLikes}>Sort by Likes</button>
+        <button className="sort-button-post" onClick={handleSortByDislikes}>Sort by Dislikes</button>
       </div>
       <div className="post-grid-container">
         {sortedPosts.map((post) => {

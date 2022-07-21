@@ -78,15 +78,15 @@ function PostForm({ restaurants, nowUser, users, handleNewPostForm }) {
                 <button onClick={handleClick} className="normal">Don't see your restaurant? Add it here!</button>
                 <br></br>
                 <label>Rating:
-                    <input onChange={e => setRating(e.target.value)}></input>
+                    <input onChange={e => setRating(e.target.value)} placeholder="Rating from 0 - 5"></input>
                 </label>
                 <br></br>
                 <label>Image:
-                    <input onChange={e => setImage(e.target.value)}></input>
+                    <input onChange={e => setImage(e.target.value)} placeholder="Not required"></input>
                 </label>
                 <br></br>
                 <label>Review:
-                    <input onChange={e => setReview(e.target.value)}></input>
+                    <input onChange={e => setReview(e.target.value)} placeholder="What did you think?" style={{ width: "350px", height: "auto" }}></input>
                 </label>
                 <br></br>
                 <button className="normal">Post it!</button>

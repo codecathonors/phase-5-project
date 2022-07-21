@@ -103,7 +103,7 @@ function SinglePostCard( {post, user, handleDeletePost} ) {
         <button onClick={handleDislike} className={isDislikeClicked ? "normal" : "dislike-clicked"}>Dislikes: {post.dislikes}</button>
         <img className="post-grid-item-image" src={post.image} style={{width:100}}/>
         <p className="post-grid-item-short-review">{post.short_review}</p>
-        <Link to={`/posts/${post.id}`}>View more</Link>
+        <Link to={`/posts/${post.id}`}><button className="normal">See More</button></Link>
         {handleDeleteShow()}
     </div>
   );

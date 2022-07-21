@@ -50,19 +50,19 @@ function RestaurantForm( { handleNewRestaurantForm } ) {
             <form onSubmit={handleSubmit} className="form-container">
                 <h4 className="form-header">Add a Restaurant</h4>
                 <label>Restaurant Name:
-                    <input type="text" onChange={e => setAddRestaurantName(e.target.value)} value={addRestaurantName}></input>
+                    <input type="text" onChange={e => setAddRestaurantName(e.target.value)} value={addRestaurantName} placeholder=". . ."></input>
                 </label>
                 <br></br>
-                <label>Category:
-                    <input type="text" onChange={e => setCategory(e.target.value)} value={category}></input>
+                <label>Type of Food:
+                    <input type="text" onChange={e => setCategory(e.target.value)} value={category} placeholder="category"></input>
                 </label>
                 <br></br>
                 <label>Image:
-                    <input type="text" onChange={e => setImage(e.target.value)} value={image}></input>
+                    <input type="text" onChange={e => setImage(e.target.value)} value={image} placeholder=". . ."></input>
                 </label>
                 <br></br>
                 <label>Location:
-                    <input type="text" onChange={e => setLocation(e.target.value)} value={location}></input>
+                    <input type="text" onChange={e => setLocation(e.target.value)} value={location} placeholder="restaurant address"></input>
                 </label>
                 <br></br>
                 <button className="normal">Add Restaurant!</button>
