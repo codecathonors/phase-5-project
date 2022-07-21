@@ -10,7 +10,7 @@ function SingleRestaurantCard( {restaurant} ) {
       <h1>{restaurant.restaurant_name}</h1>
       <h3>Average rating: {avg ? avg : "Restaurant hasn't been rated yet"} </h3>
       <p>{restaurant.location}</p>
-      <Link to={`/restaurants/${restaurant.id}`}>View more</Link>
+      <Link to={`/restaurants/${restaurant.id}`}><button className="normal">See More</button></Link>
     </div>
   );
 }
